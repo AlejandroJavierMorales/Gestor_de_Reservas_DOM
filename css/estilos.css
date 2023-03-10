@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+/*.body{
+  background-color: #c7b69f;
+  background-color: #69503c;
+  background-color:  #ab9680;
+  background-color: #c9beb0;
+  background-color: rgb(65, 62, 62);
+  background-color: rgb(250, 241, 241);
+}*/
+
+/*Reset Gral*/
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color:var(--colorCuerpo) !important; 
+  color:var(--colorFuenteCuerpo);
+  height: 75vh;
+  font-family: 'Montserrat', sans-serif !important;
+}
+header{
+  color:var(--colorCuerpo) !important;
+  background-color:var(--colorFuenteCuerpo) !important; 
+  height: 15vh;
+  
+}
+.btn{
+  background-color:var(--colorPie) !important ;
+  border:none;
+  margin:20px;
+  width:120px;
+  padding: 5px;;
+}
+.btn:hover{
+  background-color:var(--colorCuerpo) !important ;
+  color:var(--colorFuenteCuerpo);
+}
+
+footer{
+  background-color: var(--colorPie) !important;
+  color:var(colorFuenteCuerpo) !important;
+  height: 10vh;
+}
+
+.card{
+  background-color: var(--colorComponente) !important;
+  color:var(--colorFuenteCuerpo) !important;
+  
+}
+.card:hover{
+  background-color: var(--colorComponenteInvertido) !important;
+  color:var(--colorFuenteInvertido) !important;
+}
+
+.modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #111111bd;
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .6s .9s;
+  --transform: translateY(-100vh);
+  --transition: transform .8s;
+}
+
+.modal--show{
+  opacity: 1;
+  pointer-events: unset;
+  transition: opacity .6s;
+  --transform: translateY(0);
+  --transition: transform .8s .8s;
+}
+
+.modal__container{
+  margin: auto;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90%;
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 3em 2.5em;
+  display: grid;
+  gap: 1em;
+  place-items: center;
+  grid-auto-columns: 100%;
+  transform: var(--transform);
+  transition:var(--transition);
+}
+
+.modal__title{
+  font-size: 2.5rem;
+}
+
+.modal__paragraph{
+  margin-bottom: 10px;
+}
+
+.modal__img{
+  width: 90%;
+  max-width: 300px;
+}
+
+.modal__close{
+  text-decoration: none;
+  color: #fff;
+  background-color: #F26250;
+  padding: 1em 3em;
+  border: 1px solid ;
+  border-radius: 6px;
+  display: inline-block;
+  font-weight: 300;
+  transition: background-color .3s;
+}
+
+.modal__close:hover{
+  color: #F26250;
+  background-color: #fff;
+}
+/*Formulario de Reservas*/
+.formulario--elementos{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/*Oculta a quen tenga esta clase asignada*/
+.ocultar{ 
+  display: none !important;
+}
+
+.estilo_reserva{
+  border-radius: 6px;
+  border: 1px solid;
+  padding: 10px;
+  background-color: #b4a9a9;
+}
+
+.menu label{
+  padding:5px;
+}
+.field_listados{
+  border:1px solid;
+}
+.check_listados, .radio_buscar{
+  margin-left: 40px;
+}
