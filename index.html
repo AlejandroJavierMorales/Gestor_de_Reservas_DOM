@@ -11,172 +11,215 @@
     <link rel="stylesheet" href="./css/estilos.css"/>
 
 </head>
-<body class="container-fluid m-0 p-0">
-   <main class="container-fluid m-0 p-0">
-        <header class="container-fluid d-flex justify-content-center align-items-center m-0 p-0 text-center">
-            <h3>Simulador - Motor de Reservas de Alojamiento</h3>
+<body >
+   <main> 
+        <header class="header_main container-fluid">
+            <section class="row d-flex justify-content-evenly align-items-center p-0 m-0">
+                    <div class="col-3 d-flex justify-content-center">
+                        <img class="logo_hotel_main img-fluid" src="./assets/images/logo_hotel.jpg"  alt="logo hotel">
+                    </div>
+                    <div class="col-9 d-flex justify-content-center align-items-start text-center">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <h4>Motor de Reservas de Alojamiento</h4>
+                        </div>     
+                        <div class="encabezado--boton col-4 d-flex justify-content-end align-items-center  ">
+                            <a href="#" class="btn btn-primary btn_admin" >Administración</a>
+                        </div>
+                    </div>
+            </section>  
         </header>
-        <section id="section1" class="container-fluid d-flex justify-content-center align-items-center  text-center ">
-            <div class="row d-flex justify-content-evenly align-items-center h-100">
+        <section id="section1" class="container-fluid d-flex justify-content-center align-items-center  text-center pt-4">
+            <div class="row d-flex justify-content-evenly align-items-start h-100">
                     <div id="columnaIzquierda" class="card col-11 col-md-5 mt-2 mb-4 p-2" >
                         <div class="d-flex justify-content-center">
                             <img src="./assets/images/imgHotel.jpg" class="card-img-top mt-3" style="width:80%;" alt="cabaña">
                         </div>
                         <div class="card-body">
-                          <h5 class="card-title">Cabañas Ecos del Valle</h5>
+                          <h5 class="card-title">COMPANY Hotel</h5>
                           <p class="card-text">Elija su fecha de alojamiento, ingrese la cantidad de huespedes y le indicaremos las mejores alternativas de Alojamiento disponibles.</p>
-                          <a href="#" class="btn btn-primary hero__cta" >Reservar</a>
+                          <a href="#" class="btn btn-primary btn_reservar" >Reservar</a>
+                        </div>
+                        
+                    </div>
+                    <div id="columnaDerecha" class="card col-11 col-md-5 mt-2 mb-4" >
+                        <div class="p-2">
+                            <h5>Detalle de Reserva</h5>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <img src="./assets/images/habitacion_hotel.jpg" class="card-img-top m-3 pb-4" style="width:80%;" alt="habitacion Gral">  
                         </div>
                         <!--Detalle de Reserva-->
-                        <div class="reserva_confirmada ocultar">
-                          <h5 class="card-title reserva--titulo">RESERVA CONFIRMADA</h5>
-                          <div class="reserva--detalle">
-                                <h6 class="card-text titular_reserva"style="font-size: 16px;">Titular de la Reserva: </h6>
-                                <p class="card-text reserva_nro" style="text-align: left; font-size: 12px;"></p>
-                                <p class="card-text fecha_ingreso" style="text-align: left; font-size: 12px;"></p>
-                                <p class="card-text fecha_egreso" style="text-align: left; font-size: 12px;"></p>
-                                <p class="card-text cantidad_noches" style="text-align: left; font-size: 12px;"></p>
-                                <p class="card-text cant_pasajeros" style="text-align: left; font-size: 12px;"></p>
-                                <p class="card-text costo_por_noche" style="text-align: left; font-size: 12px;"></p>
-                                <p class="card-text total_estadia" style="text-align: left; font-size: 12px;"></p>
-                                <p class="card-text monto_reserva" style="text-align: left; font-size: 12px;"></p>
+                        <section class="row d-flex justify-content-center pb-4">
+                            <div class="reserva_confirmada ocultar ">
+                                <h5 class="card-title reserva--titulo">Reserva Solicitada</h5>
+                                <div class="reserva--detalle">
+                                    <h6 class="card-text titular_reserva text-center">Titular de la Reserva: </h6>
+                                    <p class="card-text reserva_nro" ></p>
+                                    <p class="card-text fecha_ingreso"></p>
+                                    <p class="card-text fecha_egreso" ></p>
+                                    <p class="card-text cantidad_noches"></p>
+                                    <p class="card-text cant_pasajeros"></p>
+                                    <p class="card-text costo_por_noche"></p>
+                                    <p class="card-text total_estadia" ></p>
+                                    <p class="card-text monto_reserva"></p>
+                                </div>
                             </div>
-                        </div>
-                          <!--**********************-->
-                    </div>
-                    <div id="columnaDerecha" class="card col-11 col-md-5 mt-2 mb-4 p-2" >
-                        <div class="d-flex justify-content-center">
-                            <img src="./assets/images/servicios_piscina.jpg" class="card-img-top mt-3" style="width:80%;" alt="piscina">
-                            
-                        </div>
-                        <div>
-                            <a href="#" class="btn btn-primary w-50" >Administración</a>
-                        </div>
-                        <!--Detalles Totales de Reservas-->
-                        <div class="totales_reservas ocultar">
-                            <h5 class="card-title totReserva--titulo">DETALLES DE FACTURACION</h5>
-                            <div class="totReserva--detalle">
-                                  <h6 class="card-text titular_reserva"style="font-size: 16px;">Titular de la Reserva: </h6>
-                                  <p class="card-text reserva_nro" style="text-align: left; font-size: 12px;"></p>
-                                  <p class="card-text fecha_ingreso" style="text-align: left; font-size: 12px;"></p>
-                                  <p class="card-text fecha_egreso" style="text-align: left; font-size: 12px;"></p>
-                                  <p class="card-text cantidad_noches" style="text-align: left; font-size: 12px;"></p>
-                                  <p class="card-text cant_pasajeros" style="text-align: left; font-size: 12px;"></p>
-                                  <p class="card-text costo_por_noche" style="text-align: left; font-size: 12px;"></p>
-                                  <p class="card-text total_estadia" style="text-align: left; font-size: 12px;"></p>
-                                  <p class="card-text monto_reserva" style="text-align: left; font-size: 12px;"></p>
-                              </div>
-                          </div>
-                            <!--**********************-->
+                        </section>
                     </div>
             </div>
         </section>
         <!--Ventana Modal LLamada a Reservar-->
         <section class="modal ">
-            <div class="modal__container">
-                <img src="./assets/images/modal.svg" class="modal__img">
-                <h2 class="modal__title">Reserva de Alojamiento</h2>
-                <section class="container-fluid">
+            <div class="modal__container pt-3 pb-1">
+                <img src="./assets/images/reserva.jpg" class="modal__img p-0 m-0">
+                <h2 class="modal__title p-0">Reserva de Alojamiento</h2>
+                <section class="container-fluid p-0">
                     <form class="formulario" action="">
-                      <section class="formulario--elementos">  
-                            <div class="d-flex">
-                                <div>
-                                   <label for="nombre" class="form-label">Nombre</label>
-                                    <input type="text" id="nombre" class="" > 
+                        <section class="row d-flex justify-content-center">
+                                <div class="col-12 d-flex flex-column m-0 p-0">
+                                        <label for="nombre" class="form-label">Nombre</label>
+                                        <input type="text" id="nombre" > 
                                 </div>
-                                <div>
-                                    <label for="dni" class="form-label">Nro. DNI</label>
-                                    <input type="text" id="dni" >
+                                <div class="col-12 d-flex flex-column m-0 p-0">
+                                    <div>
+                                        <label for="dni" class="form-label">Nro. DNI</label>
+                                    </div>
+                                    <div>
+                                        <input type="text" id="dni"  >
+                                    </div>   
                                 </div>
-                                
-                            </div>
-                            <div>
-                                <label for="domicilio" class="form-label">Domicilio</label>
-                                <input type="text" id="domicilio" >
-                            </div>
-                            <div class="d-flex">
-                                <div>
-                                    <label for="pasajeros" class="form-label">Pasajeros</label>
-                                    <input type="number" id="pasajeros" >
+                                <div class="col-12 d-flex flex-column m-0 p-0">
+                                    <label for="domicilio" class="form-label">Domicilio</label>
+                                    <input type="text" id="domicilio">
                                 </div>
-                                <div>
+                                <div class="col-12 d-flex flex-column m-0 p-0">
+                                    <div>
+                                        <label for="pasajeros" class="form-label">Pasajeros</label>
+                                    </div>
+                                    <div>
+                                        <input type="number" id="pasajeros" >
+                                    </div>   
+                                </div>
+                                <div class="col-12 d-flex flex-column m-0 p-0">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="text" id="email" >
-                                </div>   
-                            </div> 
-                            <div class="d-flex">
-                                <div>
-                                    <label for="fechaIn" class="form-label">Fecha de Ingreso</label>
-                                    <input type="date" id="fechaIn">
+                                    <input type="text" id="email">
                                 </div>
-                                <div>
-                                    <label for="fechaOut" class="form-label">Fecha de Egreso</label>
-                                    <input type="date" id="fechaOut">
+                                <div class="col-12 d-flex flex-row m-0 pt-2">
+                                    <div clas="col-6 m-0 p-0">
+                                        <label for="fechaIn" class="form-label">Fecha de Ingreso</label>
+                                        <input type="date" id="fechaIn"> 
+                                    </div>
+                                    <div clas="col-6 m-0 p-0">
+                                        <label for="fechaOut" class="form-label">Fecha de Egreso</label>
+                                        <input type="date" id="fechaOut" >
+                                    </div>
                                 </div>
-                            </div>        
-                        </section>
+                        </section>    
                     </form>
                 </section>
+                <div class="m-0 p-0 d-flex">
+                    <div>
+                        <a href="#" class="btn_confirmar_reserva btn btn-primary">Confirmar</a>
+                    </div>
+                    <div>
+                        <a href="#" class="btn_cancelar_reserva btn btn-primary">Cancelar</a>
+                    </div>
+
+                </div>
                 
-                
-                <p class="modal__paragraph">Lorem ipsum .</p>
-                <a href="#" class="modal__close">Cerrar Modal</a>
             </div>
         </section>
         <!--Ventana Modal Login para Administracion-->
-        <section class="login d-flex flex-column align-items-center justify-content-center ocultar">
-            <div class="d-flex">
-                <div class="div_usuario p-2">
-                    <label for="usuario" class="form-label" >User</label>
-                    <input type="text" id="usuario">
+        <section class="login_modal d-flex flex-column align-items-center justify-content-center ">
+            <div class="modal__container_login">
+                <div>
+                    <img class="img-fluid img_login" src="./assets/images/login.jpg" alt="imagen de Login">
                 </div>
-                <div class="div_password p-2">
-                    <label for="pass" class="form-label">Password</label>
-                    <input type="text" id="password">
+                <div class="d-flex">
+                    <div class="div_usuario p-2">
+                        <label for="usuario" class="form-label" >User</label>
+                        <input type="text" id="txt_usuario">
+                    </div>
+                    <div class="div_password p-2">
+                        <label for="pass" class="form-label">Password</label>
+                        <input type="text" id="txt_password">
+                    </div>
                 </div>
+                <div class="d-flex">
+                    <a href="#" class="btn btn-primary btn_login" >Ingresar</a>
+                    <a href="#" class="btn btn-primary btn_logout" >Cancelar</a>
+                </div> 
             </div>
-            <div>
-                <a href="#" class="btn btn-primary " >Ingresar</a>
-            </div>      
+                 
         </section>
         <!--Ventana Modal Administracion-->
-        <section class="adminisracion ">
+        <section class="ventana_administracion container-fluid">
             <!--Card Menu-->
-            <div class="card menu text-center">
-                <form action="">
-                <fieldset class="field_listados">
-                    <input type="radio" name="lista_o_busca" value="1" id="listados"> Listados
-                    <fieldset class="check_listados">
-                        Clientes <input type="checkbox" value="false" id="listar_clientes">
-                        Reservas <input type="checkbox" value="false" id="listar_reservas">
-                        Facturación <input type="checkbox" value="false" id="totales_de_facturacion">
-                    </fieldset> 
-                    <input type="radio" name="lista_o_busca" value="2" id="buscar"> Buscar...
-                    <fieldset class="radio_buscar">
-                        <input type="radio" name="busqueda" value="3" id="buscar_cliente"> Cliente
-                        <input type="radio" name="busqueda" value="4" id="buscar_reserva"> Reserva
-                    </fieldset>
-                </fieldset>
-            </form>
-            <div class="d-flex justify-content-center">
-                <a href="" class="btn_aceptar btn btn-primary">Aceptar</a>
-                <a href="" class="btn_salir btn btn-primary">Salir</a>
-                </div>   
+            <div class="container-fluid menu text-center modal__container_admin">
+                <section class="contenedor_informe d-flex flex-column align-items-center justify-content-center">
+                    <header class="encabezado_admin col-12 d-flex justify-content-center align-items-center">
+                        <div class="header_logo_hotel text-start">
+                            <img class="img-fluid" src="./assets/images/logo_hotel.jpg" id="logo_hotel" alt="logo hotel">
+                        </div>
+                        <div class="header_titulo text-center">
+                            <h1>Administración</h1>
+                        </div>
+                    </header>
+                    <div class="container-fluid fila_form col-12 p-5">
+                        <!--Seccion superior - Form seleccion de acciones-->
+                            <form class="form form_gral" action="">
+                                <section class="form_panel row d-flex justify-content-center p-2">   
+                                    <div class="col-4">
+                                        <input class="" type="radio" name="cli_res_fac" value="listado_cliente" id="listado_cliente" >Clientes
+                                    </div>
+                                    <div class="col-4">
+                                        <input class="" type="radio" name="cli_res_fac" value="listado_reserva" id="listado_reserva">Reservas
+                                    </div>
+                                    <div class="col-4">
+                                        <input class="" type="radio" name="cli_res_fac" value="listado_facturacion"  id="listado_facturacion">Facturación
+                                    </div>
+                                </section>
+                                <div class="contenedor_subPanel row d-flex justify-content-center align-items-center p-4">
+
+                                </div>
+                            </form>      
+                                    
+                                <div class="contenedor_botones d-flex justify-content-center">
+                                    <a  class="btn_aceptar_listados btn btn-primary">Aceptar</a>
+                                    <a class="btn_salir_listados btn btn-primary">Salir</a>
+                                </div>   
+                           
+                    </div>
+                    <!--Contenedor de Resultados Informes de Administración-->
+                    <div class="container-fluid contenedor_resultados d-flex justify-content-center align-items-center col-12 p-2">
+                        <!--aqui se insertan los reasultados de los informes-->
+                    </div>
+
+                </section>
+                
             </div>
              <!--Card Listados-->
-            <div class="card ver_totales">
-                <p>pwpw</p>
+            <div class="card ver_totales ocultar">
+                <p></p>
             </div>
         </section>
 
    </main>
    <footer class="container-fluid text-center d-flex justify-content-center align-items-center" >
-        <div class="row">
-            <h4>Pie de Pagina</h4>
+        <div class="row d-flex justify-content-center w-100">
+            <div class="col-6">
+                <p>Company Hotel - Escalada 1234 - Córdoba - Telefono: 351-4322778</p>
+            </div>
+            <div class="col-6">
+                <p>Email: reserva@companyhotel.com - www.CompanyHotel.com</p>
+            </div>
+            
         </div>    
     
    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <!--Libreria switAlert-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--Hoja archivo JavaScript-->
     <script src="../js/javascript.js"></script>
  </body>

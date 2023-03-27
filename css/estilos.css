@@ -25,8 +25,12 @@ body{
 header{
   color:var(--colorCuerpo) !important;
   background-color:var(--colorFuenteCuerpo) !important; 
-  height: 15vh;
-  
+  height: 90px;
+  width: 95% !important;
+  padding:0 !important;
+  margin-top: 20px;
+  border-radius: 6px;
+
 }
 .btn{
   background-color:var(--colorPie) !important ;
@@ -55,8 +59,11 @@ footer{
   background-color: var(--colorComponenteInvertido) !important;
   color:var(--colorFuenteInvertido) !important;
 }
+.reserva_confirmada:hover{
+  color:var(--colorComponenteInvertido) !important;
+}
 
-.modal{
+.modal, .login_modal, .ventana_administracion{
   position: fixed;
   top: 0;
   left: 0;
@@ -83,10 +90,9 @@ footer{
   margin: auto;
   width: 90%;
   max-width: 600px;
-  max-height: 90%;
   background-color: #fff;
   border-radius: 6px;
-  padding: 3em 2.5em;
+  padding: 2em;
   display: grid;
   gap: 1em;
   place-items: center;
@@ -95,35 +101,22 @@ footer{
   transition:var(--transition);
 }
 
+
 .modal__title{
-  font-size: 2.5rem;
+  font-size: 1.2rem;
+  padding: 0px;
 }
 
-.modal__paragraph{
-  margin-bottom: 10px;
-}
 
 .modal__img{
+  border-radius: 10px;
+  padding: 0px;
   width: 90%;
   max-width: 300px;
 }
 
-.modal__close{
-  text-decoration: none;
-  color: #fff;
-  background-color: #F26250;
-  padding: 1em 3em;
-  border: 1px solid ;
-  border-radius: 6px;
-  display: inline-block;
-  font-weight: 300;
-  transition: background-color .3s;
-}
 
-.modal__close:hover{
-  color: #F26250;
-  background-color: #fff;
-}
+
 /*Formulario de Reservas*/
 .formulario--elementos{
   display: flex;
@@ -131,18 +124,31 @@ footer{
   justify-content: center;
   align-items: center;
 }
-/*Oculta a quen tenga esta clase asignada*/
+/*Oculta a quien tenga esta clase asignada*/
 .ocultar{ 
   display: none !important;
 }
-
+.logo_hotel_main{
+  position: relative;
+  width: 120px;
+  border-radius: 5px;
+  left: -20px;
+  top: -10px;
+}
 .estilo_reserva{
   border-radius: 6px;
   border: 1px solid;
   padding: 10px;
-  background-color: #b4a9a9;
+  background-color: #d6d2d2;
+  width: 80% !important;
 }
-
+.reserva--detalle{
+  text-align: left;
+  font-size: 12px;
+}
+.reserva--detalle h6{
+  font-size: 16px;
+}
 .menu label{
   padding:5px;
 }
@@ -151,4 +157,149 @@ footer{
 }
 .check_listados, .radio_buscar{
   margin-left: 40px;
+}
+/*Estilos formulario de Reserva*/
+input, select{
+  font-size: 0.8rem;
+  border-radius: 5px;
+  background-color: #f0ebeb;
+  text-align: center;
+  box-shadow:inset;
+}
+select{
+  padding: 5px;
+}
+label{
+  font-size: 0.8rem;
+}
+.btn_admin{
+  font-size: 0.9rem;
+  width: 120px;
+}
+.img_login{
+  width: 250px;
+  border-radius: 10px;
+}
+.modal__container_login{
+  margin: auto;
+  width: 90%;
+  max-width: 600px;
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 2em;
+  display: grid;
+  gap: 1em;
+  place-items: center;
+  grid-auto-columns: 100%;
+  transform: var(--transform);
+  transition:var(--transition);
+}
+
+/*Ventana Administracion*/
+.ventana_administracion{
+  width: 95%;
+
+}
+.modal__container_admin{
+  margin: auto;
+  width: 100%;
+  max-width: 1200px;
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 2em;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  transform: var(--transform);
+  transition:var(--transition);
+  height: 90%;
+  overflow-y: scroll;
+}
+.encabezado_admin{
+  width: 95% !important;
+  background-color:var(--colorComponenteInvertido) ;
+  color: var(--colorFuenteInvertido);
+  border-radius: 10px;
+  justify-content: space-evenly !important;
+  align-items: center !important;
+  height: 70px;
+}
+
+#logo_hotel{
+  position: fixed;
+  width: 120px;
+  border-radius: 5px;
+  position: relative;
+  left: -100px;
+}
+.header_titulo h1{
+  font-size: 2rem;
+}
+.form_panel{
+  border: solid 1px;
+  border-radius: 6px;
+}
+.estilo_txtBuscarCliNombre{
+  width: 70%;
+}
+.estilo_txtBuscarCliDni{
+  width: 50%;
+}
+.contenedor_informe{
+  width: 100% !important;
+  position: fixed !important;
+  top: 40px !important;
+}
+/*Listados*/
+.header_logo_listado{
+ margin: 0px;
+}
+#logo_hotel_listado{
+  position: relative;
+  top: -12px;
+  width: 75px;
+}
+.titulo_listado{
+  position: relative;
+  top: -12px;
+  font-size: 16px !important;
+}
+.contenedor_resultados{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.cabecera_listado{
+  display: flex;
+  height: 50px !important;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+}
+
+/*Personalización Libreria Sweet Alert 2*/
+.swal2-popup{
+  border-radius: 10px;
+}
+.swal2-styled.swal2-confirm {
+  width: 120px !important;
+  border: 0;
+  border-radius: .25em;
+  background: initial;
+  background-color: var(--colorFuenteCuerpo) !important;
+  color: #fff !important;
+  font-size: 1em;
+}
+.swal2-styled.swal2-confirm:hover {
+  background-color: var(--colorPie) !important;
+  color: var(--colorFuenteCuerpo) !important;
+}
+.swal2-icon .swal2-icon-content{
+  display: flex;
+  align-items: center;
+  font-size: 3.75em;
+  color:tomato;
+  
 }
