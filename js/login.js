@@ -20,10 +20,26 @@ class Usuario {
       }
 
 
+function leerDOMFormularioLogin(){
+    const txtUsuario = document.getElementById("txt_usuario");
+    const txtPassword = document.getElementById("txt_password");
+    const arrayDOMFormularioLogin=[txtUsuario,txtPassword]
+    return arrayDOMFormularioLogin;
+}
+function resetFormularioLogin(){
+    const arrayDOMFormularioLogin= leerDOMFormularioLogin();
+    arrayDOMFormularioLogin[0].value="";
+    arrayDOMFormularioLogin[1].value="";
 
+}
+function resetVentanaAdministracion(){
+    let resetVentanaAdministracion=document.querySelector('.contenedor_resultados');
+    resetVentanaAdministracion.innerHTML="";
+}
 openModalLogin.addEventListener('click', (e)=>{
     e.preventDefault();
     modalLogin.classList.add('modal--show');
+    resetFormularioLogin();
     
 });
 //Verifica Autenticacion, si esta Ok accede a administracion y cierra Login
@@ -88,24 +104,21 @@ btnLoginModal.addEventListener('click',(e)=>{
                                                 Swal.fire({
                                                         text: "Por Favor Vuelva a Ingresar sus Credenciales para acceder al Sistema...",
                                                         icon: "success",
-                                                        className:"ventana_alerta",
                                                       });
                                         }else{
                                                 Swal.fire({
                                                         title: "Usuario No Registrado",
                                                         icon: "warning",
-                                                        className:"ventana_alerta",
                                                       });
                                         }
                                       })  
                         }else if(usuario.length===1){ //Si el Usuario Ya Existia...
                                 if(usuario[0].password===txtPassword.value ){// y el password es el correcto (el amacenado) le da la Bienvenida y permite el ingreso a Administracion
-                                
-                                
                                 modalLogin.classList.remove("modal--show");
                                 //***Mostrar Ventana de Administracion */
                                 openVentanaAdmin.classList.add('modal--show');
                                 openVentanaAdmin.classList.remove("ocultar");
+                                resetVentanaAdministracion();
                         }else {
                                 Swal.fire({
                                         title:"Error",
@@ -125,6 +138,7 @@ btnLoginModal.addEventListener('click',(e)=>{
                         icon: "warning",
                         className:"ventana_alerta",
                       });
+                      
         }
 });
 //Cancela Login y cierra ventana Modal

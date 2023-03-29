@@ -5,7 +5,7 @@ const radioReservas=document.getElementById("listado_reserva");
 const radioFacturacion=document.getElementById("listado_facturacion");
 const contenedorSubPanel=document.querySelector('.contenedor_subPanel');
 const contenedorBotones=document.querySelector('.contenedor_botones');
-
+let btnSalir=document.querySelector('.btn_salir_listados');
 
 
 const subPanelClientes=()=>{
@@ -157,8 +157,6 @@ function cargar_select(objeto) {
                             array.push(element.dni);    
                         }
                 });
-                
-                array.sort();
        
         addOptions("select", array);
         }
@@ -233,8 +231,6 @@ radioFacturacion.addEventListener('click',()=>{
                 clickFacturacionCliente();
         });
 })
-//Boton Salir de la Ventana de Administración
-let btnSalir=document.querySelector('.btn_salir_listados');
 
 btnSalir.addEventListener('click',(e)=>{
         e.preventDefault();

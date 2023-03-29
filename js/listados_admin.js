@@ -16,54 +16,51 @@ function leerRadiosDOM(){
         const radioFacTodos=document.getElementById("fac_todos");
         const radioFacPeriodo=document.getElementById("fac_periodo");
         const radioFacCliente=document.getElementById("fac_cliente");
-        const radiosDOM=[radioCliTodos,radioCliDni,radioCliNombre]
-     /*,radioResTodos,radioResPeriodo,radioResFechaIn,radioResCliente,radioFacTodos,radioFacPeriodo,radioFacCliente]   
-    */
+        const radiosDOM=[radioCliTodos,radioCliDni,radioCliNombre,radioResTodos,radioResPeriodo,radioResFechaIn,radioResCliente,radioFacTodos,radioFacPeriodo,radioFacCliente]   
      return radiosDOM
     }
 botonAceptar.addEventListener('click',()=>{
-  
+        
        const arrayRadios=leerRadiosDOM();
-        //alert(arrayRadios[0].checked.toString())
-        //* Listados de Clientes */
-        if(radioClientes===true){
-                formato_listados();
-                if(arrayRadios[0].checked===true){
-                        alert(arrayRadios[0]);
-                        informeClientes("todos");
-                }else if(arrayRadios[1].checked==true){
-                        alert(arrayRadios[1]);
-                        informeClientes("dni");
-                }else if(arrayRadios[2].checked==true){
-                        alert(arrayRadios[2]);
-                        informeClientes("nombre");
-                }
+       
+       //* Listados de Clientes */
+        if(radioClientes.checked===true){
+            formato_listados();
+            arrayRadios[0].checked===true ? informeClientes("todos") :
+            arrayRadios[1].checked===true ? informeClientes("dni") :
+            arrayRadios[2].checked===true ? informeClientes("nombre"):
+            (Swal.fire({
+                title: "Debe seleccionar una opcion",
+                icon: "warning",
+              }))
+            
         }  
         //* Listados de Reservas */
+ 
         if(radioReservas.checked===true){
-                formato_listados();
+            formato_listados();
 
-                if(radioResTodos.checked===true){
-                        informeReservas("todos");
-                }else if(radioResPeriodo.checked===true){
-                        informeReservas("periodo");
-                }else if(radioResFechaIn.checked===true){
-                        informeReservas("fechain");
-                }else if(radioResCliente.checked===true){
-                        informeReservas("cliente");
-                }
-        } 
+            arrayRadios[3].checked===true ? informeReservas("todos"):
+            arrayRadios[4].checked===true ? informeReservas("periodo"):
+            arrayRadios[5].checked===true ? informeReservas("fechain"):
+            arrayRadios[6].checked===true ? informeReservas("cliente"):
+            (Swal.fire({
+                title: "Debe seleccionar una opcion",
+                icon: "warning",
+              }))
+    } 
+
         //* Listados de Facturación */
         if(radioFacturacion.checked===true){
-                formato_listados();
-                if(radioFacTodos.checked===true){
-                        informeFacturacion("todos");
-                }else if(radioFacPeriodo.checked===true){
-                        informeFacturacion("periodo");
-                }else if(radioFacCliente.checked===true){
-                        informeFacturacion("cliente");
-                }
-        } 
+            formato_listados();
+            arrayRadios[7].checked===true ? informeFacturacion("todos"):
+            arrayRadios[8].checked===true ? informeFacturacion("periodo"):
+            arrayRadios[9].checked===true ? informeFacturacion("cliente"):
+            (Swal.fire({
+                title: "Debe seleccionar una opcion",
+                icon: "warning",
+              }))
+    } 
 });
 
 //************* FUNCIONES DE LISTADOS *************/
@@ -88,9 +85,10 @@ const formato_listados=()=>{
 }
 
 const informeClientes=(parametro)=>{
-        let clientes=[];
-        if(JSON.parse(localStorage.getItem('clientes'))!==null){
-                clientes=JSON.parse(localStorage.getItem('clientes'));
+        
+            let clientes=JSON.parse(localStorage.getItem('clientes')) || [];
+
+          if(clientes.length>0){      
                 if(parametro==="todos"){
                         mostrarClientes(clientes);
                 }else if(parametro==="dni"){
@@ -99,7 +97,7 @@ const informeClientes=(parametro)=>{
                         mostrarClientes(cliAux);
                 }else if(parametro==="nombre"){
                         txtCli = document.getElementById("txt_buscar_cli");
-                        let cliAux=clientes.filter(cliente=>cliente.nombre>=txtCli.value)
+                        let cliAux=clientes.filter(cliente=>(cliente.nombre).startsWith(txtCli.value))
                         cliAux.sort((a,b)=> a.nombre.localeCompare(b.nombre))
                         mostrarClientes(cliAux);
                 }
@@ -140,7 +138,6 @@ const mostrarClientes=(clientes)=>{
             });
  
         filaCliente.style.cssText='width:100%; padding-bottom: 100px;';
-        filaCliente.classList.add('esta_poronga');
         filaCliente.classList.add('container-fluid');    
         filaCliente.classList.add('row');
         filaCliente.classList.add('d-flex');  
@@ -170,9 +167,10 @@ const mostrarClientes=(clientes)=>{
         
 
 const informeReservas=(parametro)=>{
-        let reservas=[];
-        if(JSON.parse(localStorage.getItem('reservas'))!==null){
-                reservas=JSON.parse(localStorage.getItem('reservas'));
+        
+        let reservas=JSON.parse(localStorage.getItem('reservas'));
+
+        if(reservas.length>0){        
                 if(parametro==="todos"){
 
                         mostrarReservas(reservas);
@@ -237,7 +235,9 @@ const mostrarReservas=(reservas)=>{
                 
                 filaReservas.innerHTML+=`<div class="filaCli d-flex flex-column justify-content-center   col-12 rounded">
                                         <div>
-                                                <p><img src="../assets/images/trash.svg" alt="Eliminar Reserva" title="Eliminar Reserva" width="16" />
+                                        <button class="btn btn-warning" onclick="eliminarItemListado(${reserva.nro},'reservas');" title="Eliminar Reserva">
+                                        <img src="../assets/images/trash.svg" alt="Eliminar Cliente" width="16" />
+                                        </button>    
                                                 <B>RESERVA NÚMERO </B>   ${reserva.nro}</p>
 
                                         </div>
@@ -299,11 +299,11 @@ const mostrarReservas=(reservas)=>{
 
 
 const informeFacturacion=(parametro=>{
-        let reservas=[];
-        if(JSON.parse(localStorage.getItem('reservas'))!==null){
-                reservas=JSON.parse(localStorage.getItem('reservas'));
+        
+        let reservas=JSON.parse(localStorage.getItem('reservas'));
+        
+        if(reservas.length>0){        
                 if(parametro==="todos"){
-
                         mostrarFacturacion(reservas,"todos");
                 }else if(parametro==="periodo"){
                         let f1=document.querySelector('.dtp_in');
@@ -417,28 +417,97 @@ const mostrarFacturacion=(reservas,parametro)=>{
         p_totalFac.style.cssText='margin:30px; font-size:14px; font-weight: bold; text-align:center; padding:6px; border-radius:6px;'
 }
 function eliminarItemListado(id,tipoListado) {//listado es el array en el que voy a borrar un item, id es el identificado del item a borrar
-    //const carrito = cargarProductosCarrito();
+    
+    
+    const radiosDOM=leerRadiosDOM();
     let listado_aux=[];
     
-    if(tipoListado==="clientes"){
-        listado=JSON.parse(localStorage.getItem("clientes")) || []
-        console.log(listado);
+    if(tipoListado==="clientes"){ //Eliminar Cliente y Registros de Reservas Asociados
+        listado=JSON.parse(localStorage.getItem("clientes")) || [];
+       
         if(listado.length>0){
-            listado_aux = listado.filter(item => item.dni !== id);
-            console.log(listado_aux)
-            //JSON.stringify(localStorage.setItem("clientes",listado_aux));
-            if(radioCliTodos.checked===true){
-                informeClientes("todos");
-            }else if(radioCliDni.checked===true){
-                    informeClientes("dni");
-            }else if(radioCliNombre.checked===true){
-                    informeClientes("nombre");
+            let reservas=JSON.parse(localStorage.getItem("reservas")) || [];
+            if(reservas.length>0){
+                Swal.fire({
+                    title: 'Pérdida de Información!',
+                    text: "Si elimina el Cliente, perdera el registro de las reservas asociadas...Desea Borrarlo ?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Registrar',
+                    cancelButtonText: 'Cancelar'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                       let reservas_aux = reservas.filter(item => parseInt(item.dni) !== parseInt(id));
+                       
+                       localStorage.setItem('reservas', JSON.stringify(reservas_aux));
+                       
+                       listado_aux = listado.filter(item => parseInt(item.dni) !== parseInt(id));
+                      
+                       localStorage.setItem('clientes', JSON.stringify(listado_aux));
+                       formato_listados();
+                       if(radiosDOM[0].checked===true){
+                            informeClientes("todos");
+                            }else if(radiosDOM[1]===true){
+                                    informeClientes("dni");
+                            }else if(radiosDOM[2].checked===true){
+                                    informeClientes("nombre");
+                        }
+                       
+                        Swal.fire({
+                            title: "El Cliente, y sus registros asociados han sido Borrados con Éxito!",
+                            icon: "success",
+                            className:"ventana_alerta",
+                          });
+                    }else{
+                            Swal.fire({
+                                    title: "El Cliente no ha sido Borrado...",
+                                    icon: "warning",
+                                  });
+                    }
+                  })                   
             }
         }
     }else if(tipoListado==="reservas"){
-        mostrarReservas(listado_aux);
+            listado=JSON.parse(localStorage.getItem("reservas")) || [];
+       
+            if(listado.length>0){
+                Swal.fire({
+                    title: 'Eliminar Reserva!',
+                    text: "Confirma eliminar este registro ?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Registrar',
+                    cancelButtonText: 'Cancelar'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+
+                       listado_aux = listado.filter(item => parseInt(item.nro) !== parseInt(id));
+                       localStorage.setItem('reservas', JSON.stringify(listado_aux));
+                       formato_listados();
+                       if(radiosDOM[3].checked===true){
+                            informeReservas("todos");
+                            }else if(radiosDOM[4]===true){
+                                    informeReservas("periodo");
+                            }else if(radiosDOM[5].checked===true){
+                                    informeReservas("fechain");                  
+                        }else if(radiosDOM[6].checked===true){
+                                    informeReservas("cliente");
+                        }
+                       
+                        Swal.fire({
+                            title: "La Reserva seleccionada ha sido Borrada con Éxito!",
+                            icon: "success",
+                            className:"ventana_alerta",
+                          });
+                    }else{
+                            Swal.fire({
+                                    title: "La Reserva no ha sido Borrada...",
+                                    icon: "warning",
+                                  });
+                    }
+                  })                   
+            
+            }
     }
-    
-    //renderProductosCarrito();
-    //renderBotonCarrito();
+
 }

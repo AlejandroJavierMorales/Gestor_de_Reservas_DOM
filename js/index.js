@@ -15,7 +15,6 @@ rootElement.style.setProperty("--colorComponenteInvertido",colorComponenteInvert
 rootElement.style.setProperty("--colorFuenteInvertido",colorFuenteInvertido );
 
 
-//*************** Inicio Simulador de Reservas Con OBJETOS - ARRAYS - FUNCIONES DE ORDEN SUPERIOR *****************
 //Variables Globales
 let huespedes =0;
 let promHuespedes=0;
@@ -29,27 +28,6 @@ let fechaOut="00/00/0000";
 let estadia;
 let validacion=[0,0];
 let porcentaje_reserva=0.5;//Define con cuanto dinero se toma una Reserva respecto del Valor Total de la misma
-//Variables del DOM
-const txtNombre=document.getElementById("nombre");
-const txtDni=document.getElementById("dni");
-const txtPasajeros=document.getElementById("pasajeros");
-const txtEmail=document.getElementById("email");
-const txtDomicilio=document.getElementById("domicilio");
-const txtFechaIn=document.getElementById("fechaIn");
-const txtFechaOut=document.getElementById("fechaOut");
-const p_reserva_nro=document.querySelector(".reserva_nro");
-
-const titular_reserva=document.querySelector(".titular_reserva")
-
-//Datos de la Reserva
-const div_reserva_confirmada=document.querySelector(".reserva_confirmada");
-const p_fecha_ingreso=document.querySelector(".fecha_ingreso");
-const p_fecha_egreso=document.querySelector(".fecha_egreso");
-const p_cantidad_noches=document.querySelector(".cantidad_noches");
-const p_cant_pasajeros=document.querySelector(".cant_pasajeros");
-const p_costo_por_noche=document.querySelector(".costo_por_noche");
-const p_total_estadia=document.querySelector(".total_estadia");
-const p_costo_reserva=document.querySelector(".monto_reserva");
 
 
 class Reserva{
@@ -84,16 +62,8 @@ const precioEstadia={
     5:25500
 }
 
-const usuario={
-        administrador:"admin",
-        invitado:"1234"
-}
-
 let arrayReservas=[];
 let arrayClientes=[];
-
-
-
 
 
 //********************Validacion Formulario de Carga de Reserva***************************/
@@ -152,25 +122,66 @@ const validarFormulario=()=>{
 //*************************************************************************/
 //************* PROCESO DE CARGA DE RESERVA *******************************/
 //Tratamiento de Ventana Modal para la Carga de Datos del Cliente y Reserva
+
+//Variables del DOM
+const txtNombre=document.getElementById("nombre");
+const txtDni=document.getElementById("dni");
+const txtPasajeros=document.getElementById("pasajeros");
+const txtEmail=document.getElementById("email");
+const txtDomicilio=document.getElementById("domicilio");
+const txtFechaIn=document.getElementById("fechaIn");
+const txtFechaOut=document.getElementById("fechaOut");
+const p_reserva_nro=document.querySelector(".reserva_nro");
+
+const titular_reserva=document.querySelector(".titular_reserva")
+
+//Datos de la Reserva a Mostrar
+const div_reserva_confirmada=document.querySelector(".reserva_confirmada");
+const p_fecha_ingreso=document.querySelector(".fecha_ingreso");
+const p_fecha_egreso=document.querySelector(".fecha_egreso");
+const p_cantidad_noches=document.querySelector(".cantidad_noches");
+const p_cant_pasajeros=document.querySelector(".cant_pasajeros");
+const p_costo_por_noche=document.querySelector(".costo_por_noche");
+const p_total_estadia=document.querySelector(".total_estadia");
+const p_costo_reserva=document.querySelector(".monto_reserva");
+
+
+
 const openModalReserva = document.querySelector('.btn_reservar');
 const modal = document.querySelector('.modal');
 const closeModal = document.querySelector('.btn_confirmar_reserva');
 const btn_cancelar_reserva = document.querySelector('.btn_cancelar_reserva');
 
+function leerDOMFormularioReserva(){
+        const txtNombre=document.getElementById("nombre");
+        const txtDni=document.getElementById("dni");
+        const txtPasajeros=document.getElementById("pasajeros");
+        const txtEmail=document.getElementById("email");
+        const txtDomicilio=document.getElementById("domicilio");
+        const txtFechaIn=document.getElementById("fechaIn");
+        const txtFechaOut=document.getElementById("fechaOut");
+        const arrayDOMFormularioReserva=[txtNombre,txtDni,txtPasajeros,txtEmail,txtDomicilio,txtFechaIn,txtFechaOut];
+        return arrayDOMFormularioReserva
+}
+
+function resetFormularioReserva(){
+        const arrayDOMFormularioReserva= leerDOMFormularioReserva();
+        arrayDOMFormularioReserva.forEach(campo => {campo.value=""});
+}
+
 
 openModalReserva.addEventListener('click', (e)=>{
     e.preventDefault();
-    
-    modal.classList.add('modal--show');
-        //Si existen registros en el LocalStorage de Cliente y Reservas los recupera y los
-        //guarda en lo arrays correspondientes
-        if(JSON.parse(localStorage.getItem('clientes'))!== null){              
-                arrayClientes = JSON.parse(localStorage.getItem('clientes'));
-        }
-        if(JSON.parse(localStorage.getItem('reservas')) !== null){
-                arrayReservas=JSON.parse(localStorage.getItem('reservas'));   
-                cantReservas=parseInt(arrayReservas[arrayReservas.length-1].nro); //Actualiza el nro de la ultima reserva registrada
-        }
+    resetFormularioReserva();
+    modal.classList.add('modal--show');           
+        arrayClientes = JSON.parse(localStorage.getItem('clientes')) || [];
+        arrayReservas=JSON.parse(localStorage.getItem('reservas')) || [];   
+                if (arrayReservas.length-1 >=0){
+                        cantReservas=parseInt(arrayReservas[arrayReservas.length-1].nro); //Actualiza el nro de la ultima reserva registrada
+                }else{
+                        cantReservas=0;
+                }
+
 });
 
 btn_cancelar_reserva.addEventListener('click',(e)=>{
