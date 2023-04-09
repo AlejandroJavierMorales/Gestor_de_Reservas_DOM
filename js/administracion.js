@@ -1,3 +1,4 @@
+
 //***********************************************************/
 //*************** VENTANA DE ADMINISTRACION *****************/
 const radioClientes=document.getElementById("listado_cliente");
@@ -10,13 +11,13 @@ let btnSalir=document.querySelector('.btn_salir_listados');
 
 const subPanelClientes=()=>{
         contenedorSubPanel.innerHTML=`  <div class="col-4">
-                                                <input class="" type="radio" name="cli" value="cli_todos" id="cli_todos" > <label for="cli_todos">Todos</label>
+                                                <input class="" type="radio" name="cli" value="cli_todos" id="cli_todos" > <span>Todos</span>
                                         </div>
                                         <div class="col-4">
-                                                <input class="" type="radio" name="cli" value="cli_dni" id="cli_dni"> <label for="cli_dni">x DNI</label>
+                                                <input class="" type="radio" name="cli" value="cli_dni" id="cli_dni"> <span>x DNI</span>
                                         </div>
                                         <div class="col-4">
-                                                <input class="" type="radio" name="cli" value="cli_nombre"  id="cli_nombre"> <label for="cli_nombre">x Nombre</label>
+                                                <input class="" type="radio" name="cli" value="cli_nombre"  id="cli_nombre"> <span>x Nombre</span>
                                         </div>
                                         <div class="contenedor_subpanel_clientes row d-flex justify-content-center ">
                                                 
@@ -27,16 +28,16 @@ const subPanelClientes=()=>{
 
 const subPanelReservas=()=>{
         contenedorSubPanel.innerHTML=`  <div class="col-3">
-                                                <input class="" type="radio" name="res" value="res_todos" id="res_todos" > <label>Todas</label>
+                                                <input class="" type="radio" name="res" value="res_todos" id="res_todos" > <span>Todas</span>
                                         </div>
                                         <div class="col-3">
-                                                <input class="" type="radio" name="res" value="res_periodo" id="res_periodo"> <label>Período</label>
+                                                <input class="" type="radio" name="res" value="res_periodo" id="res_periodo"> <span>Período</span>
                                         </div>
                                         <div class="col-3">
-                                        <input class="" type="radio" name="res" value="res_fechaIn" id="res_FechaIn"> <label>Fecha de Ingreso</label>
+                                        <input class="" type="radio" name="res" value="res_fechaIn" id="res_FechaIn"> <span>Fecha Ingreso</span>
                                         </div>
                                         <div class="col-3">
-                                                <input class="" type="radio" name="res" value="res_cliente"  id="res_cliente"> <label>Cliente</label>
+                                                <input class="" type="radio" name="res" value="res_cliente"  id="res_cliente"> <span>Cliente</span>
                                         </div>
                                         <div class="contenedor_subpanel_reservas row d-flex justify-content-center ">
                                                 
@@ -45,13 +46,13 @@ const subPanelReservas=()=>{
 }
 const subPanelFacturacion=()=>{
         contenedorSubPanel.innerHTML=`  <div class="col-4">
-                                                <input class="" type="radio" name="res" value="fac_todos" id="fac_todos"  > <label>Facturación Total</label>
+                                                <input class="" type="radio" name="res" value="fac_todos" id="fac_todos"  > <span>Total</span>
                                         </div>
                                         <div class="col-4">
-                                                <input class="" type="radio" name="res" value="fac_periodo" id="fac_periodo"> <label>Período</label>
+                                                <input class="" type="radio" name="res" value="fac_periodo" id="fac_periodo"> <span>Período</span>
                                         </div>
                                         <div class="col-4">
-                                                <input class="" type="radio" name="res" value="fac_cliente"  id="fac_cliente"> <label>Cliente</label>
+                                                <input class="" type="radio" name="res" value="fac_cliente"  id="fac_cliente"> <span>Cliente</span>
                                         </div>
                                         <div class="contenedor_subpanel_facturacion row d-flex justify-content-center ">
                                                 

@@ -1,15 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
-/*.body{
-  background-color: #c7b69f;
-  background-color: #69503c;
-  background-color:  #ab9680;
-  background-color: #c9beb0;
-  background-color: rgb(65, 62, 62);
-  background-color: rgb(250, 241, 241);
-}*/
-
-/*Reset Gral*/
 *{
   margin:0;
   padding:0;
@@ -53,17 +43,24 @@ footer{
 .card{
   background-color: var(--colorComponente) !important;
   color:var(--colorFuenteCuerpo) !important;
+  overflow: auto !important;
   
 }
 .card:hover{
   background-color: var(--colorComponenteInvertido) !important;
   color:var(--colorFuenteInvertido) !important;
 }
+.card1:hover{
+  color:var(--colorComponenteInvertido) !important;
+}
 .reserva_confirmada:hover{
   color:var(--colorComponenteInvertido) !important;
 }
-
-.modal, .login_modal, .ventana_administracion{
+.btn_reservar{
+  width: 200px;
+  font-size: 1rem;
+}
+.formulario_modal, .login_modal, .ventana_administracion{
   position: fixed;
   top: 0;
   left: 0;
@@ -77,7 +74,6 @@ footer{
   --transform: translateY(-100vh);
   --transition: transform .8s;
 }
-
 .modal--show{
   opacity: 1;
   pointer-events: unset;
@@ -86,7 +82,7 @@ footer{
   --transition: transform .8s .8s;
 }
 
-.modal__container{
+.formulario_modal__container{
   margin: auto;
   width: 90%;
   max-width: 600px;
@@ -100,23 +96,19 @@ footer{
   transform: var(--transform);
   transition:var(--transition);
 }
-
-
+.formulario_modal{
+   z-index: 100;
+}
 .modal__title{
   font-size: 1.2rem;
   padding: 0px;
 }
-
-
 .modal__img{
   border-radius: 10px;
   padding: 0px;
   width: 90%;
   max-width: 300px;
 }
-
-
-
 /*Formulario de Reservas*/
 .formulario--elementos{
   display: flex;
@@ -135,20 +127,38 @@ footer{
   left: -20px;
   top: -10px;
 }
+/*Estilos Detalle de Reserva en index.html*/
 .estilo_reserva{
   border-radius: 6px;
   border: 1px solid;
   padding: 10px;
   background-color: #d6d2d2;
   width: 80% !important;
+  margin-bottom: 30px;
+  
 }
 .reserva--detalle{
   text-align: left;
   font-size: 12px;
+ 
 }
 .reserva--detalle h6{
   font-size: 16px;
 }
+.titulo_habitaciones div, .reserva_gral, .titulo_pasajeros{
+  padding:4px;
+}
+.reserva_gral{
+  margin-left: 10px;
+  text-align: left !important;
+}
+.precio_total_reserva{
+  margin-top: 8px;
+}
+.nota_reserva{
+  margin-top: 15px;
+}
+/*------------------------------*/
 .menu label{
   padding:5px;
 }
@@ -170,6 +180,10 @@ select{
   padding: 5px;
 }
 label{
+  font-size: 0.8rem;
+}
+#nombre, #email{
+  width: 90%;
   font-size: 0.8rem;
 }
 .btn_admin{
@@ -276,9 +290,41 @@ label{
   justify-content: center;
   align-items: center;
   width: 100%;
+}
+.titulo_habitaciones{
+  width: 200px !important;
+  margin-bottom: 20px !important;
+  padding: 7px 60px 7px 60px;
+  background-color: var(--colorFuenteCuerpo) !important;
+  color: var(--colorFuenteInvertido) !important;
+  border-radius: 6px;
+}
+.contenedor_habitaciones_gral{
+  margin-top: 30px !important; 
+  margin-bottom: 30px !important;
+}
+.estilos_fila_reserva{
+  width:100%; 
+  padding-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0%;
+}
+.filaCli{
+  border: 1px solid !important;
+  border-color: var(--colorFuenteCuerpo) !important;
+  text-align: left; 
+  width: 95%; 
+  padding: 5px;
 
 }
-
+.estilos_fila_reserva p{
+  margin-left:100px;
+}
+.p_totalFac{
+  margin-bottom: 250px !important;
+}
 /*Personalización Libreria Sweet Alert 2*/
 .swal2-popup{
   border-radius: 10px;
@@ -302,4 +348,348 @@ label{
   font-size: 3.75em;
   color:tomato;
   
+}
+/*Etilos Barra de Busqueda de Reservas*/
+.busqueda__fecha, .busqueda__pasajeros, .busqueda__btn{
+  border: solid 3px orange;
+  height:60px;
+  background-color: #d6d2d2;
+  color: rgb(39, 35, 35);
+  font-size: 1rem;
+  border-radius: 6px;
+  margin-top: 50px;
+  z-index: 2;
+}
+.busqueda__fecha:hover, .busqueda__pasajeros:hover, .busqueda__btn:hover{
+  font-size: 0.9rem;
+  cursor:pointer;
+}
+.busqueda__btn{
+  
+  background-color: var(--colorFuenteCuerpo) !important;
+  
+}
+.busqueda__btn .busqueda_btn{
+  color: var(--colorFuenteInvertido);
+  text-decoration: none !important;
+}
+/*Estilos Calendario*/
+#calendar{
+  width: 500px;
+  height: auto;
+  position: relative;
+  top:-85px;
+  left: -10px;
+ 
+}
+#calendar a{
+    color: var(--colorFuenteCuerpo);
+    text-decoration: none;
+}
+.fc-theme-standard{
+  background-color:var(--colorComponente);
+}
+.fc-button{
+  background-color:var(--colorFuenteCuerpo) !important;
+}
+.fc-toolbar-title{
+  margin-right: 10px;
+  padding:5px;
+}
+
+/*Estilos Cantidad de Pasajeros*/
+.busqueda__pasajeros__contenedor{
+  width: 400px;
+  height: 350px;
+  position: relative;
+  top: -140px;
+  right: -200px;
+  background-color:var(--colorComponente);
+  color: var(--colorFuenteCuerpo);  
+  font-size: 1rem;
+  border-radius: 10px;
+}
+.busqueda__pasajeros__contenedor span, .busqueda__pasajeros__contenedor a{
+  background-color:var(--colorComponente);
+  color: var(--colorComponenteInvertido);
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 10px;
+  
+} 
+
+#btn_listo{
+  padding: 15px;
+  padding-left: 60px;
+  padding-right: 60px;
+  margin-top: 20px !important;
+  border-radius: 6px;
+  background-color:var(--colorFuenteCuerpo);
+  color:var(--colorFuenteInvertido);
+}
+.div_linea_adultos, .div_linea_menores{
+border: solid var(--colorFuenteCuerpo) 1px;
+padding: 10px;
+background-color:var(--colorComponente);
+align-items: center;
+margin-left: 40px;
+border-radius: 6px;
+
+}
+#span_adultos_titulo, #span_menores_titulo{
+  font-weight: bold;
+}
+#adultos_menos, #adultos_mas, #menores_menos, #menores_mas, #adultos_cantidad, #menores_cantidad{
+  font-size: 1.2rem;
+}
+#adultos_menos:hover, #adultos_mas:hover, #menores_menos:hover, #menores_mas:hover{
+  background-color:var(--colorCuerpo);
+}
+#adultos_menos, #menores_menos, #adultos_mas, #menores_mas{
+padding-left: 30px;
+padding-right: 30px;
+}
+
+/*Estilos Render Habitaciones*/
+.busqueda__resultados__contenedor{
+  width: 95%;
+  border: solid 1px;
+  margin: -50px 5px 40px 5px;
+  color: var(--colorFuenteInvertido);
+}
+.fila_id, .fila_pasajeros{
+  font-size: 1.1rem;
+  padding: 10px;
+}
+.fila_descripcion{
+  font-size: 0.9rem;
+}
+.imagen{
+  border: none !important;;
+  padding: 10px;
+  width: 450px ;
+  border-radius: 30px;
+  box-shadow: 5px 5px 5px 5px var(--colorCuerpo);
+}
+.estilos_checkbox{
+  width: 25px;
+  height: 25px;
+  margin: 20px;
+}
+.form-check-input:checked {
+  background-color: var(--colorFuenteCuerpo);
+  border-color: var(--colorFuenteInvertido);
+}
+.lbl_Check{
+  font-size: 1rem;
+  padding: 20px 20px 20px 0px;
+}
+.select_cant{
+  width: 230px;
+  font-size: 1rem;
+}
+.btn_confirmar_habitacion{
+  padding: 20px 10px 20px 10px;
+  width: 250px;
+}
+.btn_confirmar_habitacion:hover{
+  color:var(--colorFuenteInvertido);
+}
+
+.busqueda_estilo_bienvenida{
+  width: 100%;
+  border: solid 1px;
+  margin: -50px 5px 40px 5px;
+  background-color: var(--colorFuenteCuerpo);
+  border-radius: 20px;
+  padding-top: 150px;
+  padding-bottom: 60px;
+  position: relative;
+  top: -130px;
+  z-index: 1;
+}
+.msj_bienvenida{
+  font-size: 2.5rem;
+  font-weight: bold;
+  font-family:Arial, Helvetica, sans-serif;
+  color:var(--colorFuenteInvertido);
+  background-color: var(--colorFuenteCuerpo);
+}
+.msj_bienvenida_2{
+  font-size: 1.2rem;
+  color:var(--colorFuenteInvertido);
+  background-color: var(--colorFuenteCuerpo);
+}
+
+
+@media (max-width:768px) {
+  /*Estilos index.html*/
+  .modal__title{
+    font-size: 0.9rem;
+    padding: 0px;
+  }
+  .btn_reservar{
+    width: 120px;
+    font-size: 0.7rem;
+  }
+  .titulo_index, .titulo_reservas, .header_titulo{
+    font-size: 1.1rem;
+  }
+  .btn_admin, .btn_volver, .busqueda_btn, #btn_listo, .btn_confirmar_reserva, .btn_cancelar_reserva, .btn_login, .btn_logout{
+    width: auto;
+    font-size: 0.7rem;
+  }
+  .logo_hotel_main{
+    width: 80px !important;
+  }
+  .header_main{
+    height: 60px;
+  }
+  footer{
+    font-size: 0.6rem;
+  }
+  /*Estilos reservas.html*/
+  .busqueda__reserva span{
+    font-size: 0.6rem;
+  }
+  .msj_bienvenida{
+    font-size: 1.2rem;
+    position: relative;
+    top: -40px !important;
+  }
+  .msj_bienvenida_2{
+    font-size: 0.9rem;
+    position: relative;
+    top: -40px !important;
+  }
+  .contenedor_busqueda{
+    margin-top: -50px;
+  }
+ /*Estilos Calendar*/
+ .busqueda__calendario__contenedor{
+  font-size: 12px;
+  margin-left: 20px;
+ }
+ .fc-daygrid-day-events{
+  min-height: 1em;
+ }
+ .fc-toolbar-title{
+  font-size: 1rem;
+ }
+ /*Estilos Busqueda Pasajeros*/
+ .busqueda__pasajeros__contenedor {
+  width: 300px;
+  height: 250px;
+  position: relative;
+  top: -140px;
+  right: 0px;
+  font-size: 0.7rem;
+  }
+  .busqueda__pasajeros__contenedor span{
+    font-size: 0.9rem;
+  }
+  .busqueda__pasajeros__contenedor input{
+    width: 100px;
+    font-size: 0.8rem;
+  }
+  .div_linea_adultos, .div_linea_menores {
+    border: solid var(--colorFuenteCuerpo) 1px;
+    padding: 3px;
+    background-color: var(--colorComponente);
+    align-items: center;
+    margin-left: 10px;
+    border-radius: 6px;
+  }
+  #adultos_cantidad, #menores_cantidad {
+    font-size: 0.9rem;
+    padding: 3px;
+  }
+  #adultos_menos, #adultos_mas, #menores_menos, #menores_mas {
+    font-size: 1rem;
+    padding: 3px 12px 3px 12px;
+    
+  }
+  /*Estilos renderizado Habitaciones*/
+  .busqueda_estilo_bienvenida{
+    margin-bottom: -100px !important;
+  }
+  .div_bienvenida_2{
+    margin-bottom: 0px;
+  }
+  .contenedor_de_habitaciones span, .contenedor_de_habitaciones select{
+    font-size: 0.8rem;
+  } 
+  .fila_descripcion{
+    margin-top: 30px;
+  }
+  /*Estilos Formulario*/
+  #nombre, #email{
+    width: 90%;
+    font-size: 0.8rem;
+  }
+  #dni{
+    width: 70%;
+    font-size: 0.8rem;
+  }
+  #telefono{
+    width: 80%;
+    font-size: 0.8rem;
+  }
+  .formulario_modal__container img{
+    width: 250px;
+  }
+ /*Estilos Login*/
+  #txt_password, #txt_usuario{
+    width: 100%;
+    font-size: 0.6rem;
+    padding: 4px;
+  }
+  .logo_hotel_admin{
+    width: 80px !important;
+    position: relative;
+    left: -20px !important;
+  }
+  .encabezado_admin{
+    height: 60px;
+  }
+  /*Estilos Listados*/
+  .form_panel{
+    font-size: 0.6rem;
+  }
+  .form_panel span{
+    margin-left: 4px !important;
+    margin-bottom: 4px !important;
+  }
+  .contenedor_subPanel span, .contenedor_subPanel input, .contenedor_subPanel select{
+    margin-left: 1px !important;
+    margin-bottom: 4px !important;
+    font-size: 0.6rem;
+  } 
+  .titulo_listado{
+    font-size: 0.8rem !important;  
+  }
+  .fecha{
+    font-size: 0.6rem !important;
+  }
+  .btn_eliminar_item_listado, .btn_ver_detalle{
+    width: auto;
+    padding: 3px 6px 3px 6px !important;
+  }
+  .filaCli p{
+    font-size: 0.7rem;
+  }
+  .btn_aceptar_listados, .btn_salir_listados{
+    width: 80px;
+    font-size: 0.8rem;
+  }
+  .estilos_fila_reserva{
+    font-size: 0.7rem;
+    margin-left: 0px;
+  }
+  .filaRes p{
+    margin-left: 0px;
+  }
+  .habitaciones{
+    padding-bottom: 10px;
+  }
 }

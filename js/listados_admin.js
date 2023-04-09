@@ -2,7 +2,7 @@
 /**************************************************/
 const botonAceptar = document.querySelector(".btn_aceptar_listados");
 const cuerpoListados = document.querySelector('.contenedor_resultados');
-
+let bdHabitaciones=leerHabitaciones();
 function leerRadiosDOM(){
           
    
@@ -16,8 +16,8 @@ function leerRadiosDOM(){
         const radioFacTodos=document.getElementById("fac_todos");
         const radioFacPeriodo=document.getElementById("fac_periodo");
         const radioFacCliente=document.getElementById("fac_cliente");
-        const radiosDOM=[radioCliTodos,radioCliDni,radioCliNombre,radioResTodos,radioResPeriodo,radioResFechaIn,radioResCliente,radioFacTodos,radioFacPeriodo,radioFacCliente]   
-     return radiosDOM
+        const radiosDOM=[radioCliTodos,radioCliDni,radioCliNombre,radioResTodos,radioResPeriodo,radioResFechaIn,radioResCliente,radioFacTodos,radioFacPeriodo,radioFacCliente];   
+     return radiosDOM;
     }
 botonAceptar.addEventListener('click',()=>{
         
@@ -32,7 +32,7 @@ botonAceptar.addEventListener('click',()=>{
             (Swal.fire({
                 title: "Debe seleccionar una opcion",
                 icon: "warning",
-              }))
+              }));
             
         }  
         //* Listados de Reservas */
@@ -47,7 +47,7 @@ botonAceptar.addEventListener('click',()=>{
             (Swal.fire({
                 title: "Debe seleccionar una opcion",
                 icon: "warning",
-              }))
+              }));
     } 
 
         //* Listados de Facturación */
@@ -59,7 +59,7 @@ botonAceptar.addEventListener('click',()=>{
             (Swal.fire({
                 title: "Debe seleccionar una opcion",
                 icon: "warning",
-              }))
+              }));
     } 
 });
 
@@ -126,13 +126,26 @@ const mostrarClientes=(clientes)=>{
         contenedorClientes.appendChild(filaCliente);
         array_clientes.forEach((cliente)=>{
                 filaCliente.innerHTML+=`<div class="filaCli d-flex flex-column justify-content-center   col-12 rounded">
-                                        <button class="btn btn-warning" onclick="eliminarItemListado(${cliente.dni},'clientes');" title="Eliminar Cliente">
-                                        <img src="../assets/images/trash.svg" alt="Eliminar Cliente" width="16" />
-                                        </button>    
-                                        <p class="p_nombreCli"><B>NOMBRE</B>   ${cliente.nombre}</p>
-                                        <p><B>DNI</B>   ${cliente.dni}</p>
-                                        <p><B>E-MAIL   </B> ${cliente.email}</p>
-                                        <p><B>DOMICILIO   </B> ${cliente.domicilio}</p>
+                                                <div class="row d-flex justify-content-evenly align-items-center">
+                                                        <div class="col-2 text-center ">
+                                                                <button class="btn btn-warning btn_eliminar_item_listado" onclick="eliminarItemListado(${cliente.dni},'clientes');" title="Eliminar Cliente">
+                                                                        <img src="../assets/images/trash.svg" alt="Eliminar Cliente" width="16" />
+                                                                </button>
+                                                        </div>
+                                                        <div class="col-10 text-center">
+                                                                <p class="p_nombreCli text-start"><B>NOMBRE</B>   ${cliente.nombre}</p>
+                                                        </div>
+                                                        <div class="col-4">
+                                                                <p><B>DNI</B>   ${cliente.dni}</p>
+                                                        </div>
+                                                        <div class="col-8">
+                                                                <p><B>TELÉFONO   </B> ${cliente.telefono}</p>
+                                                        </div>
+                                                        <div class="col-12">
+                                                                <p><B>E-MAIL   </B> ${cliente.email}</p>
+                                                        </div>
+                                                </div>        
+                                       
                                         </div>`
         
             });
@@ -153,16 +166,7 @@ const mostrarClientes=(clientes)=>{
                 cadafila.style.cssText=`border: 1px solid; text-align: left; width: 95%; padding: 5px;`;
         }
 
-        let parrafos=filaCliente.getElementsByTagName('p');
-        for (cadaparrafo of parrafos){
-                cadaparrafo.style.cssText='margin-left:100px;';
-        }
 
-        let p_nombreCli=[];
-        p_nombreCli=document.getElementsByClassName('p_nombreCli');
-        for(cadaCliente of p_nombreCli){
-                cadaCliente.style.cssText='margin-left:250px;';
-        }
 }
         
 
@@ -178,7 +182,7 @@ const informeReservas=(parametro)=>{
                         let f1=document.querySelector('.dtp_in');
                         let f2=document.querySelector('.dtp_out');
 
-                        let resAux=reservas.filter(reserva=>(Date.parse(reserva.fechaIngreso)>=Date.parse(f1.value)) && (Date.parse(reserva.fechaIngreso)<=(Date.parse(f2.value))) );  
+                        let resAux=reservas.filter(reserva=>(Date.parse(parsearFechaString(reserva.fechaIngreso))>=Date.parse(f1.value)) && (Date.parse(parsearFechaString(reserva.fechaIngreso))<=(Date.parse(f2.value))) );  
 
                         mostrarReservas(resAux);
                         console.log(resAux)
@@ -186,14 +190,17 @@ const informeReservas=(parametro)=>{
                         let f1=document.querySelector('.dtp_in');
                         let resAux=[];
                         reservas.forEach((reserva)=>{
-                                let fechaAux=new Date(reserva.fechaIngreso);
+
+                                let fechaAux=new Date(parsearFechaString(reserva.fechaIngreso));
                                 let fechaAux2=new Date(f1.value);
-                                let fechaParseada = (fechaAux.getDate()+2)+"/"+(fechaAux.getMonth()+1)+"/"+fechaAux.getFullYear();
-                                let fechaParseada2 =(fechaAux2.getDate()+2)+"/"+(fechaAux2.getMonth()+1)+"/"+fechaAux2.getFullYear();
+                              
+                                let fechaParseada = (fechaAux.getDate())+"/"+(fechaAux.getMonth()+1)+"/"+fechaAux.getFullYear();
+                                let fechaParseada2 =(fechaAux2.getDate()+1)+"/"+(fechaAux2.getMonth()+1)+"/"+fechaAux2.getFullYear();
                                 
                                 if(fechaParseada===fechaParseada2){
                                         resAux.push(reserva);
-                                }
+                                } 
+
                             });
 
                         mostrarReservas(resAux); 
@@ -227,74 +234,109 @@ const mostrarReservas=(reservas)=>{
 
         contenedorReservas.appendChild(filaReservas);
 
+        let x=0
         array_reservas.forEach((reserva)=>{
                 f1=new Date(reserva.fechaIngreso);
                 f2=new Date(reserva.fechaEgreso);
                 f1.setDate(f1.getDate()+1);
                 f2.setDate(f2.getDate()+1);
                 
-                filaReservas.innerHTML+=`<div class="filaCli d-flex flex-column justify-content-center   col-12 rounded">
-                                        <div>
-                                        <button class="btn btn-warning" onclick="eliminarItemListado(${reserva.nro},'reservas');" title="Eliminar Reserva">
-                                        <img src="../assets/images/trash.svg" alt="Eliminar Cliente" width="16" />
-                                        </button>    
-                                                <B>RESERVA NÚMERO </B>   ${reserva.nro}</p>
+                
+                filaReservas.innerHTML+=`<div class="filaCli filaRes d-flex flex-column justify-content-center col-12 rounded">
+                                                <div class="text-start">
+                                                        <button class="btn btn-warning btn_eliminar_item_listado" onclick="eliminarItemListado(${reserva.nro},'reservas');" title="Eliminar Reserva">
+                                                                <img src="../assets/images/trash.svg" alt="Eliminar Cliente" width="16" />
+                                                        </button>    
+                                                        <B>RESERVA NÚMERO </B>   ${reserva.nro}</p>
 
-                                        </div>
-                                        <div class="row d-flex justify-content-center align-items-center">
-                                                <div class="col-6">
-                                                        <p><B>NOMBRE DEL CLIENTE    </B>   ${reserva.nombre}</p>
                                                 </div>
-                                                <div class="col-6">
-                                                       <p><B>DNI   </B> ${reserva.dni}</p>
+                                                <div class="row d-flex justify-content-center align-items-center">
+                                                        <div class="col-6 text-start div_res">
+                                                                <p><B>NOMBRE DEL CLIENTE    </B>   ${reserva.nombre}</p>
+                                                        </div>
+                                                        <div class="col-6 text-start div_res">
+                                                        <p><B>DNI   </B> ${reserva.dni}</p>
+                                                        </div>
                                                 </div>
-                                        </div>
-                                        <div class="row d-flex justify-content-center align-items-center">
-                                                <div class="col-6">
-                                                        <p><B>FECHA DE INGRESO   </B> ${f1.getDate()}/${f1.getMonth()+1}/${f1.getFullYear()}</p>
+                                                <div class="row d-flex justify-content-center align-items-center">
+                                                        <div class="col-6 text-start div_res">
+                                                                <p><B>FECHA DE INGRESO   </B> ${reserva.fechaIngreso}</p>
+                                                        </div>
+                                                        <div class="col-6 text-start div_res">
+                                                                <p><B>FECHA DE EGRESO   </B> ${reserva.fechaEgreso}</p>
+                                                        </div>
                                                 </div>
-                                                <div class="col-6">
-                                                        <p><B>FECHA DE EGRESO   </B> ${f2.getDate()}/${f2.getMonth()+1}/${f2.getFullYear()}</p>
+                                                <div class="row d-flex justify-content-center align-items-center">
+                                                        <div class="col-12 text-start">
+                                                                <p><B>CANTIDAD DE NOCHES DE ALOJAMIENTO   </B> ${reserva.estadia}</p>
+                                                        </div>
+                                                
                                                 </div>
-                                        </div>
-                                        <div class="row d-flex justify-content-center align-items-center">
-                                                <div class="col-6">
-                                                        <p><B>CANTIDAD DE NOCHES DE ALOJAMIENTO   </B> ${reserva.estadia}</p>
+                                                <div class="row d-flex justify-content-center align-items-center">
+                                                        <div class="col-6 text-start">
+                                                                <p><B>PASAJEROS ADULTOS </B> ${reserva.cantPasajerosAdultos}</p>
+                                                        </div>
+                                                        <div class="col-6 text-start">
+                                                                <span><B>PASAJEROS MENORES   </B> ${reserva.cantPasajerosMenores}</span>
+                                                                <span class="edad_menores${x}"></span>
+                                                        </div>
                                                 </div>
-                                                <div class="col-6">
-                                                        <p><B>VALOR NOCHE DE ALOJAMIENTO   </B> $${reserva.costoPorNoche}</p>
+                                                <div class="container-fluid text-center d-flex justify-content-center contenedor_habitaciones_gral mt-4 mb-3">
+                                                        <div class="contenedor_habitaciones${x} row d-flex justify-content-center align-items-center">
+                                                        
+                                                        </div>
                                                 </div>
-                                        </div>
-                                        <div class="row d-flex justify-content-center align-items-center">
-                                                <div class="col-6">
-                                                        <p><B>CANTIDAD DE PASAJEROS   </B> ${reserva.cantPasajeros}</p>
-                                                </div>
-                                                <div class="col-6">
-                                                <p><B>VALOR TOTAL ESTADÍA   </B> $${reserva.costoPorNoche*reserva.estadia}</p>
-                                                </div>
-                                        </div>`       
+                                        </div>`   
+               
+                let edadMenores = reserva.edadMenores || [];
+                let contenedor_edad_menores=document.querySelector(`.edad_menores${x}`)
+                let a=0;
+                if(edadMenores.length>0){
+                        edadMenores.forEach(menor=>{
+                        (a===0) ? (contenedor_edad_menores.innerHTML+=`  ( ${menor} `)
+                        : (contenedor_edad_menores.innerHTML+=`,${menor} `)
+                
+                        a++
+                        });
+                        contenedor_edad_menores.innerHTML+=`Años )`
+                } 
+                  
+          
+               let arrayHabitaciones=reserva.habitacion || [];
+
+                let contenedor_habitaciones = document.querySelector(`.contenedor_habitaciones${x}`)                      
+                contenedor_habitaciones.innerHTML=`<div class="col-12 text-center habitaciones">
+                                                        <B><span class="titulo_habitaciones mb-3" ">HABITACIONES</span></B>
+                                                </div>`
+                let valorTotalEstadia=0;
+                arrayHabitaciones.forEach(habitacion=>{
+                
+                        let auxHab=bdHabitaciones.filter((habit)=>parseInt(habit.id)===parseInt(habitacion.habitacion));
+                                
+                        contenedor_habitaciones.innerHTML+=`     <div class="col-12 d-flex justify-content-start">
+                                                                <B><span>Habitación (Id- ${habitacion.habitacion}): </span></B><span class="nombre_habitacion">${auxHab[0].nombre}</span>
+                                                        </div>
+                                                        <div class="col-6 d-flex justify-content-start">
+                                                                <B><span>Cantidad: </span></B><span class="cantidad_habitacion">${habitacion.cantidad}</span>
+                                                        </div>
+                                                        <div class="col-6  d-flex justify-content-start">
+                                                                <B><span>Precio por Noche: </span></B><span class="precio_habitacion">$${habitacion.precio}</span>
+                                                        </div>`
+                        valorTotalEstadia+=parseInt(habitacion.cantidad)*parseFloat(habitacion.precio);       
+                });
+                        valorTotalEstadia=valorTotalEstadia*reserva.estadia;
+                        contenedor_habitaciones.innerHTML+=`<div class="col-12 d-flex justify-content-start precio_total_reserva">
+                                                                        <B><span style="padding:5px;">VALOR TOTAL ESTADIA </span></B><span class="precio_total_estadia" style="padding:5px; border:solid 1px; border-radius:6px;">$${valorTotalEstadia}</span>
+                                                                </div>`  
+             
+                x++;
+                      
             });
-      
-        filaReservas.style.cssText='width:100%; padding-bottom: 100px;';
+        
         filaReservas.classList.add('container-fluid');    
-        filaReservas.classList.add('row');  
-        filaReservas.classList.add('d-flex');  
-        filaReservas.classList.add('justify-content-center');  
-        filaReservas.classList.add('align-items-center');
-        filaReservas.classList.add('p-0');
-        filaReservas.classList.add('m-0');
-
-        let fila=[];
-        fila=document.getElementsByClassName('filaCli');
-            
-        for (cadafila of fila){
-                cadafila.style.cssText='border: 1px solid; text-align: left; width: 95%; padding: 5px;';
-        }
-
-        let parrafos=filaReservas.getElementsByTagName('p');
-        for (cadaparrafo of parrafos){
-                cadaparrafo.style.cssText='margin-left:100px;';
-        }
+        filaReservas.classList.add('row');
+        filaReservas.classList.add('estilos_fila_reserva');
+          
 }
 
 
@@ -308,10 +350,10 @@ const informeFacturacion=(parametro=>{
                 }else if(parametro==="periodo"){
                         let f1=document.querySelector('.dtp_in');
                         let f2=document.querySelector('.dtp_out');
-                        let resAux=reservas.filter(reserva=>(Date.parse(reserva.fechaIngreso)>=Date.parse(f1.value)) && (Date.parse(reserva.fechaIngreso)<=Date.parse(f2.value)) );  
+                        let resAux=reservas.filter(reserva=>(Date.parse(parsearFechaString(reserva.fechaIngreso))>=Date.parse(f1.value)) && (Date.parse(parsearFechaString(reserva.fechaIngreso))<=Date.parse(f2.value)) );  
 
                         resAux.sort((a, b) => Date.parse(a.fechaIngreso) - Date.parse(b.fechaIngreso))
-                        console.log(resAux)
+                        
                         
                         mostrarFacturacion(resAux,"periodo");
                 }else if(parametro==="cliente"){
@@ -350,7 +392,7 @@ const mostrarFacturacion=(reservas,parametro)=>{
                                         <p class="titulo_fac"></p>
                                 </div>`
         let titulo_fac = document.querySelector('.titulo_fac');
-        if(parametro==="total"){
+        if(parametro==="todos"){
                 titulo_fac.textContent=`Facturación Total`
         }else if(parametro==="periodo"){
                 const dtp_in=document.querySelector('.dtp_in');
@@ -366,14 +408,17 @@ const mostrarFacturacion=(reservas,parametro)=>{
         titulo_fac.style.cssText='font-size:14px; font-weight: bold; text-align:center; padding:6px; border-radius:6px;'
 
         array_reservas.forEach((reserva)=>{
-                f1=new Date(reserva.fechaIngreso);
-                f2=new Date(reserva.fechaEgreso);
+                f1=new Date(parsearFechaString(reserva.fechaIngreso));
+                f2=new Date(parsearFechaString(reserva.fechaEgreso));
                 f1.setDate(f1.getDate()+1);
                 f2.setDate(f2.getDate()+1);
                 
-                filaReservas.innerHTML+=`<div class="filaCli d-flex flex-column justify-content-center   col-12 rounded">
+                filaReservas.innerHTML+=`<div class="filaCli d-flex flex-column justify-content-center col-12 rounded border" ">
                                         <div class="row d-flex justify-content-center align-items-center">
                                                 <div class="col-3">
+                                                        <button class="btn btn-warning btn_ver_detalle btn_detalle_reserva${reserva.nro}" onmouseover="verDetalleReserva(${reserva.nro});" title="Ver Detalle de Reserva">
+                                                                <img src="../assets/images/buscar.png" alt="Ver Detalle de Reserva" style="width:32px;" />
+                                                        </button>  
                                                         <p><B>RESERVA NÚMERO </B>   ${reserva.nro}</p>
                                                 </div>
                                                 <div class="col-3">
@@ -383,7 +428,10 @@ const mostrarFacturacion=(reservas,parametro)=>{
                                                 <p><B>EGRESO   </B> ${f2.getDate()}/${f2.getMonth()+1}/${f2.getFullYear()}</p>
                                                 </div>
                                                 <div class="col-3">
-                                                <p><B>subTOTAL ESTADÍA   </B> $${reserva.costoPorNoche*reserva.estadia}</p>
+                                                <p><B>Total Estadía   </B> $${reserva.costoPorNoche*reserva.estadia}</p>
+                                                </div>
+                                                <div class="col-12  detalle_reserva_fac${reserva.nro} ocultar text-center">
+
                                                 </div>
                                         </div>`       
             });
@@ -398,7 +446,7 @@ const mostrarFacturacion=(reservas,parametro)=>{
         p_totalFac.textContent="Total Facturado $"+totalFacturado;
         
 
-        filaReservas.style.cssText='width:100%; padding-bottom: 100px;';
+        filaReservas.style.cssText='font-size:0.7rem; width:100%; padding-bottom: 100px;';
         filaReservas.classList.add('container-fluid');    
         filaReservas.classList.add('row');  
         filaReservas.classList.add('d-flex');  
@@ -456,7 +504,7 @@ function eliminarItemListado(id,tipoListado) {//listado es el array en el que vo
                         Swal.fire({
                             title: "El Cliente, y sus registros asociados han sido Borrados con Éxito!",
                             icon: "success",
-                            className:"ventana_alerta",
+
                           });
                     }else{
                             Swal.fire({
@@ -497,7 +545,7 @@ function eliminarItemListado(id,tipoListado) {//listado es el array en el que vo
                         Swal.fire({
                             title: "La Reserva seleccionada ha sido Borrada con Éxito!",
                             icon: "success",
-                            className:"ventana_alerta",
+  
                           });
                     }else{
                             Swal.fire({
@@ -510,4 +558,101 @@ function eliminarItemListado(id,tipoListado) {//listado es el array en el que vo
             }
     }
 
+}
+const parsearFechaString = (fecha)=>{
+        let fechaCadena=fecha
+        let dia =fechaCadena.slice(0,fechaCadena.indexOf("/") );
+        let mes =fechaCadena.slice(fechaCadena.indexOf("/")+1,fechaCadena.lastIndexOf("/"))
+        let anio =fechaCadena.slice(fechaCadena.lastIndexOf("/")+1, fechaCadena.lastIndexOf("/")+5)
+       
+       let fechaParseada=anio+"-"+mes+"-"+dia;
+
+       return fechaParseada
+    }
+
+const verDetalleReserva=(nro_reserva)=>{
+        //alert(nro_reserva)
+        
+        let detalle_express=document.querySelector(`.detalle_reserva_fac${nro_reserva}`);
+        
+        let reservas=JSON.parse(localStorage.getItem('reservas')) || [];
+       
+        if(reservas.length>0){
+                let reserva_buscada=reservas.filter(reserva_nro=>parseInt(reserva_nro.nro)===parseInt(nro_reserva));
+
+                detalle_express.innerHTML=`<div class="row d-flex justify-content-center align-items-center">
+                                                 <div class="col-6 text-start">
+                                                        <p><B>NOMBRE DEL CLIENTE    </B>   ${reserva_buscada[0].nombre}</p>
+                                                </div>
+                                                <div class="col-6 text-start">
+                                                        <p><B>DNI   </B> ${reserva_buscada[0].dni}</p>
+                                                </div>
+                                        </div>
+                                        <div class="row d-flex justify-content-center align-items-center">
+                                                <div class="col-12 text-start">
+                                                        <p><B>CANTIDAD DE NOCHES DE ALOJAMIENTO   </B> ${reserva_buscada[0].estadia}</p>
+                                                </div>
+        
+                                        </div>
+                                        <div class="row d-flex justify-content-center align-items-center">
+                                                <div class="col-12 text-start">
+                                                        <p><B>PASAJEROS ADULTOS </B> ${reserva_buscada[0].cantPasajerosAdultos}</p>
+                                                </div>
+                                                <div class="col-12 text-start">
+                                                        <span><B>PASAJEROS MENORES   </B> ${reserva_buscada[0].cantPasajerosMenores}</span>
+                                                        <span class="edad_menores_${nro_reserva}"></span>
+                                                </div>
+                                        </div>
+                                        <div class="container-fluid text-center d-flex justify-content-center contenedor_habitaciones_gral mt-4 mb-3">
+                                                <div class="contenedor_habitaciones${nro_reserva} row d-flex justify-content-center align-items-center">
+                
+                                                </div>
+                                        </div>`;   
+
+                let edadMenores = reserva_buscada[0].edadMenores || [];
+                let contenedor_edad_menores=document.querySelector(`.edad_menores_${nro_reserva}`);
+                let a=0;
+                if(edadMenores.length>0){
+                edadMenores.forEach(menor=>{
+                (a===0) ? (contenedor_edad_menores.innerHTML+=`  ( ${menor} `)
+                : (contenedor_edad_menores.innerHTML+=`,${menor} `);
+
+                a++
+                });
+                contenedor_edad_menores.innerHTML+=`Años )`;
+                } 
+                //habitaciones
+                let arrayHabitaciones=reserva_buscada[0].habitacion || [];
+
+                let contenedor_habitaciones = document.querySelector(`.contenedor_habitaciones${nro_reserva}`)                      
+                contenedor_habitaciones.innerHTML=`<div class="col-12 text-center">
+                                                        <B><span class="titulo_habitaciones mb-3" ">HABITACIONES</span></B>
+                                                </div>`
+                arrayHabitaciones.forEach(habitacion=>{
+                
+                        let auxHab=bdHabitaciones.filter((habit)=>parseInt(habit.id)===parseInt(habitacion.habitacion));
+                                
+                        contenedor_habitaciones.innerHTML+=`<div class="col-6 d-flex justify-content-start pt-2">
+                                                                <B><span>Habitación (Id- ${habitacion.habitacion}): </span></B><span class="nombre_habitacion">${auxHab[0].nombre}</span>
+                                                        </div>
+                                                        <div class="col-3 d-flex justify-content-start pt-2">
+                                                                <B><span>Cantidad: </span></B><span class="cantidad_habitacion">${habitacion.cantidad}</span>
+                                                        </div>
+                                                        <div class="col-3  d-flex justify-content-start pt-2">
+                                                                <B><span>Precio por Noche: </span></B><span class="precio_habitacion">$${habitacion.precio}</span>
+                                                        </div>`       
+                });
+                       
+
+        }
+
+
+        detalle_express.classList.remove('ocultar');
+        let boton=document.querySelector(`.btn_detalle_reserva${nro_reserva}`)
+        
+        boton.addEventListener('mouseout',()=>{
+                detalle_express.innerHTML='';
+                detalle_express.classList.add('ocultar');
+        })
+                               
 }

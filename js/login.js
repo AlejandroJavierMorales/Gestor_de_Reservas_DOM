@@ -67,13 +67,13 @@ btnLoginModal.addEventListener('click',(e)=>{
                                         Swal.fire({
                                                 text: "Por Favor Vuelva a Ingresar sus Credenciales para acceder al Sistema...",
                                                 icon: "success",
-                                                className:"ventana_alerta",
+
                                               });
                                 }else{
                                         Swal.fire({
                                                 title: "Usuario No Registrado",
                                                 icon: "warning",
-                                                className:"ventana_alerta",
+ 
                                               });
                                 }
                               })       
@@ -124,7 +124,7 @@ btnLoginModal.addEventListener('click',(e)=>{
                                         title:"Error",
                                         title: "El Password  Ingresado es Incorrecto...",
                                         icon: "warning",
-                                        className:"ventana_alerta",
+
                                       });
                                 }
                         
@@ -136,7 +136,7 @@ btnLoginModal.addEventListener('click',(e)=>{
                         title:"Error",
                         title: "Usuario o Password  Ingresado es Incorrecto...",
                         icon: "warning",
-                        className:"ventana_alerta",
+
                       });
                       
         }

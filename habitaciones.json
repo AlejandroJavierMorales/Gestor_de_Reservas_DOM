@@ -1,0 +1,50 @@
+[
+{
+    "id":1,
+    "nombre":"Deluxe Twin",
+    "pasajeros":"2",
+    "descripcion":"Las habitaciones Deluxe Twin fueron diseñadas para brindar el máximo confort para pasajeros que viajen por negocios o por placer. Poseen 35 mts2, bañera con agua termal de diseño exclusivo, mobiliario de alta gama de madera lustrada, escritorio, dos sillones individuales con mesa, valijero y dos camas de 2 metros por 1.20 metros. Las habitaciones disponen de menú de almohadas, pantuflas, batas y secador de cabellos. Además poseen un LCD 32”, televisión por cable, frigobar, caja de seguridad y climatización individual. Cantidad: 43 habitaciones.",
+    "precio":"32000",
+    "imagen":"../assets/images/habitaciones/deluxe_twin.jpg"   
+},
+{
+    "id":2,
+    "nombre":"Deluxe Twin con Terraza",
+    "pasajeros":"3",
+    "descripcion":"Las habitaciones Deluxe Twin con Terraza fueron diseñadas para brindar el máximo confort para pasajeros que viajen por negocios o por placer. Poseen 35 mts2, bañera con agua termal de diseño exclusivo, mobiliario de alta gama de madera lustrada y tres camas de 1.20 mts x 1.90 mts. Las habitaciones disponen un escritorio, dos sillones individuales con mesa, valijero, menú de almohadas, pantuflas, batas y secador de cabello. Además poseen un LCD 32”, televisión por cable, frigobar, caja de seguridad y climatización individual. Las terrazas tiene muebles de exterior y reposeras.",
+    "precio":"38000",
+    "imagen":"../assets/images/habitaciones/deluxe_twin_con_terraza.jpg"   
+},
+{
+    "id":3,
+    "nombre":"Deluxe Matrimonial",
+    "pasajeros":"2",
+    "descripcion":"Las habitaciones Deluxe Matrimonial poseen un tamaño de 35 mts2, cubiertos por mobiliario de alta gama compuesto por: una confortable cama de 2 mts x 2 mts, mueble escritorio, valijero, 2 sillones individuales con mesa desayunador y amplios placares con puertas espejadas. El piso de las habitaciones es completamente de porcelanato, la iluminación es por medio de LED de última generación y poseen un LCD 32” con televisión por cable. El baño cuenta con bañera en L de diseño exclusivo con agua termal y de red independiente.",
+    "precio":"32000",
+    "imagen":"../assets/images/habitaciones/deluxe_matrimonial.jpg"   
+},
+{
+    "id":4,
+    "nombre":"Deluxe Matrimonial con Terraza",
+    "pasajeros":"4",
+    "descripcion":"Las habitaciones Deluxe Matrimonial con Terraza poseen un tamaño de 35 mts2, cubiertos por mobiliario de alta gama compuesto por: una confortable cama King Size + 2 camas de 1,20 x 1,90m, mueble escritorio, 2 sillones individuales con mesa desayunador y amplios placares con puertas espejadas. El piso de las habitaciones es completamente de porcelanato, la iluminación es por medio de LED de última generación y poseen un LCD 32” con televisión por cable. El baño cuenta con bañera en L de diseño exclusivo con agua termal y de red independiente.",
+    "precio":"38000",
+    "imagen":"../assets/images/habitaciones/deluxe_matrimonial_con_terraza.jpg"   
+},
+{
+    "id":5,
+    "nombre":"Suite Ejecutiva",
+    "pasajeros":"5",
+    "descripcion":"Las Suites Ejecutivas tienen 75 mts2 divididos en dos Dormitorios y una amplia sala de estar con juegos de living. La habitación principal contiene una cama de 2 metros por 2 metros y un valijero y la segunda habitacion 3 camas individuales de 1,20 x 1,90m. También posee un toilette de recepción, un amplio baño con bañera ergonómica y ducha independiente. Posee mobiliario de alta gama de madera lustrada, mueble escritorio, 2 sillones individuales con mesa desayunador y mueble frigobar.",
+    "precio":"45000",
+    "imagen":"../assets/images/habitaciones/ejecutiva.jpg"   
+},
+{
+    "id":6,
+    "nombre":"Suite Presidencial",
+    "pasajeros":"6",
+    "descripcion":"La Suite Presidencial posee 150 mts2 y se encuentra ubicada en el último piso del hotel. Posee tres amplios ambientes equipados con los más altos estándares de calidad: sala de estar y living, cocina completa, comedor con mesa para 12 comensales, escritorio, toilette de recepción, habitación separada con baño privado y ducha independiente, una cama de 2 metros por 2 metros y4 camas de 1,20 x 1,90m, amplio vestidor y desborde descubierto con vistas al dique termal Río Hondo.",
+    "precio":"60000",
+    "imagen":"../assets/images/habitaciones/presidencial.jpg"   
+}
+]
