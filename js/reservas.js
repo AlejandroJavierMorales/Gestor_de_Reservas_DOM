@@ -57,7 +57,7 @@ btn_busqueda_fecha.addEventListener('click',()=>{//contenedor de spans de fecha 
         fechaInicio = dateFormat( start );
         fechaFin    = dateFormat( endDate );
         
-        if(fechaInicio===fechaFin){//1 solo click, si son distintos 0> rango
+        if(fechaInicio===fechaFin){//1 solo click, si son distintos => rango
             if(clic==0){
                 fechaInicio = dateFormat( start );
                 periodo_inicio.innerText=(`${fechaInicio}`);

@@ -71,7 +71,7 @@ function clickClientesDni(){
                                                         <option>DNI de Cliente </option>
                                                 </select>
                                               </div>`;
-        cargar_select('clientes');//carga dnis
+        cargar_select('clientes');//carga dni
 
 }
 function clickClientesNombre(){
@@ -174,7 +174,7 @@ let select = document.getElementsByName(domElement)[0];
 }
 
 //Pone en eccucha del evento clic a los radio buttons de clientes, reservas y facturacion en la cabacera
-//de la ventana de administracion, los que dispararan luego los listados e mostrar en pantalla.
+//de la ventana de administracion, los que dispararan luego los listados a mostrar en pantalla.
 radioClientes.addEventListener('click',()=>{
         subPanelClientes();
         const radioCliTodos=document.getElementById("cli_todos");

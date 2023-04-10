@@ -54,7 +54,7 @@ const restarFechasString=(fecha1, fecha2)=>{
 const validarFormulario=()=>{
     validacion[0]=1;
 
-   //Array Validacion contiene en la posicion 0 un bit en "0" si hubo error y "1" si no lo hubo
+   //Array Validacion contiene en la posicion 0 un "0" si hubo error y "1" si no lo hubo
    // y en la posicion 1 el nro corresponde al tipo de Erorr
   
    if((txtNombre.value =="") || ((txtNombre.value).trim().length)==0 ){
@@ -91,8 +91,6 @@ const validarFormulario=()=>{
     }  
 }
 
-
-
 btn_cancelar_reserva.addEventListener('click',(e)=>{
     e.preventDefault();
     document.querySelector('.formulario_modal').classList.remove('modal--show')
@@ -100,7 +98,7 @@ btn_cancelar_reserva.addEventListener('click',(e)=>{
 });
 
 //confirmacion de reserva - almacenamiento en "base de datos"
-btn_confirmar_reserva.addEventListener('click', (e)=>{ //****Activa Evento Click del boton de cierrede ventana modal */
+btn_confirmar_reserva.addEventListener('click', (e)=>{ 
     e.preventDefault();
     
     arrayClientes = JSON.parse(localStorage.getItem('clientes')) || [];
@@ -113,7 +111,6 @@ btn_confirmar_reserva.addEventListener('click', (e)=>{ //****Activa Evento Click
             }
 
     validarFormulario();
-    //validacion[] es un array global
 
     if( parseInt(validacion[0])==1){
             //**** Si la carga de datos no tiene errores, guardado datos del Cliente y Reserva en Arrays correspondientes
@@ -161,23 +158,18 @@ btn_confirmar_reserva.addEventListener('click', (e)=>{ //****Activa Evento Click
                     text: "La Reserva ha sido Registrada con Éxito!",
                     icon: "success",
                     showConfirmButton: false,
-                  })
-                  
+                  });  
             
             document.querySelector('.formulario_modal').classList.remove('modal--show');
             
-
             //Guarda en el LocalStorage
             localStorage.setItem('reservas', JSON.stringify(arrayReservas));
             localStorage.setItem('clientes', JSON.stringify(arrayClientes));
             
             let reserva_nueva=cantReservas;//Nro de la nueva reserva
-            localStorage.setItem('reserva_registrada',JSON.stringify(reserva_nueva))
+            localStorage.setItem('reserva_registrada',JSON.stringify(reserva_nueva));
 
-            window.open('/index.html','_self')
-
-             /* setTimeout(() => window.open('/index.html','_self'), 1500);  */
-        
+            window.open('/index.html','_self');
     }else{
         //identifica tipo de error
         switch(validacion[1]){
@@ -186,7 +178,6 @@ btn_confirmar_reserva.addEventListener('click', (e)=>{ //****Activa Evento Click
                            title: "Error",
                          text: "El Nombre Ingresado es Incorrecto",
                        icon: "warning",
-                  
                     });
                     break;
             case 2: //error de dni
@@ -194,7 +185,6 @@ btn_confirmar_reserva.addEventListener('click', (e)=>{ //****Activa Evento Click
                             title: "Error",
                             text:"El número de DNI Ingresado es Incorrecto",
                             icon: "warning",
-                            
                     });
                     break;
             case 3: //error de Telefono
@@ -202,7 +192,6 @@ btn_confirmar_reserva.addEventListener('click', (e)=>{ //****Activa Evento Click
                             title: "Error",
                             text: "Error al Ingresar Nro. de Telefono",
                             icon: "warning",
-                            
                     });
                     break;
             case 4: //error de email
@@ -210,23 +199,20 @@ btn_confirmar_reserva.addEventListener('click', (e)=>{ //****Activa Evento Click
                             title: "Error",
                             text:"El Email ingresado es incorrecto",
                             icon: "warning",
-                            
                     });
                     break;
             case 12://Error de Cliente Incorrecto (Coincide el DNI pero no el Nombre)
                     Swal.fire({
                             title: "Error",
                             text: "El Cliente es Incorrecto, el Nombre No Coincide con el Registrado...",
-                            icon: "warning",
-                            
+                            icon: "warning", 
                     });
                     break;
             default:
                     Swal.fire({
                             title: "Error",
                             text: "Los Datos Ingresados son Incorrectos o están Incompletos...",
-                            icon: "warning",
-                            
+                            icon: "warning",        
                     });
                     break;
             }

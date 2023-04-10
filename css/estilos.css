@@ -246,8 +246,8 @@ label{
   position: relative;
   left: -100px;
 }
-.header_titulo h1{
-  font-size: 2rem;
+.header_titulo{
+  font-size: 1.6rem !important;
 }
 .form_panel{
   border: solid 1px;
@@ -290,6 +290,34 @@ label{
   justify-content: center;
   align-items: center;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.estilo_cliente{
+  padding: 0px;
+  margin: 0px;
+  width:100%; 
+  padding-bottom: 100px;
+  display: flex;
+  justify-content:center;
+
+}
+.estilos_fila_reserva{
+  width:100%; 
+  padding-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0%;
+}
+.estilos_facturacion{
+  font-size:0.7rem; 
+  width:100%; 
+  padding-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .titulo_habitaciones{
   width: 200px !important;
@@ -302,14 +330,6 @@ label{
 .contenedor_habitaciones_gral{
   margin-top: 30px !important; 
   margin-bottom: 30px !important;
-}
-.estilos_fila_reserva{
-  width:100%; 
-  padding-bottom: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0%;
 }
 .filaCli{
   border: 1px solid !important;
@@ -521,6 +541,83 @@ padding-right: 30px;
   background-color: var(--colorFuenteCuerpo);
 }
 
+@media (max-width:575px) {
+  /*Estilos Index.html*/
+  .titulo_index{
+    margin-bottom: -40px !important;
+    margin-left: -30px;
+    font-size: 0.9rem !important;
+  }
+  .btn_volver, #btn_listo{
+    width: auto;
+    font-size: 0.5rem !important;
+    margin-bottom: 50px !important;
+    margin-left: 100px !important;
+  }
+  .btn_admin{
+    width: auto;
+    font-size: 0.6rem !important;
+    margin-top: 50px !important;
+    
+  }
+  .logo_hotel_main{
+    width: 70px !important;
+    margin-bottom: 30px !important;
+  }
+
+.header_main{
+  height: 55px !important;
+}
+footer{
+  font-size: 0.5rem !important;
+}
+.card-title{
+  font-size: 1rem;
+}
+.card-text{
+ font-size:  0.7rem;
+}
+/*Estilos Reservas.html*/
+.busqueda__pasajeros, .busqueda__btn{
+  margin:0px !important;
+}
+.titulo_reservas{
+  font-size: 0.8rem !important;
+  margin-bottom: 50px !important;
+}
+.busqueda_btn{
+  width: auto;
+  font-size: 0.5rem !important;
+}
+/*Estilos Busqueda Pasajeros*/
+.busqueda__pasajeros__contenedor {
+  width: 200px;
+  height: 150px;
+  position: relative;
+  top: -140px;
+  right: 0px;
+  font-size: 0.5rem;
+  }
+  .busqueda__pasajeros__contenedor span{
+    font-size: 0.7rem;
+  }
+  .busqueda__pasajeros__contenedor input{
+    width: 80px;
+    font-size: 0.7rem;
+  }
+  #adultos_cantidad, #menores_cantidad {
+    font-size: 0.8rem;
+    padding: 3px;
+  }
+  /*Estilos Listados*/
+  .titulo_listado, .header_titulo{
+    font-size: 0.9rem !important;
+  }
+  .titulo_listado_facturacion, .fecha{
+    font-size: 0.2rem !important;
+  }
+}
+
 
 @media (max-width:768px) {
   /*Estilos index.html*/
@@ -693,3 +790,4 @@ padding-right: 30px;
     padding-bottom: 10px;
   }
 }
+

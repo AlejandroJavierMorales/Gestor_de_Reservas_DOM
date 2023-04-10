@@ -80,8 +80,7 @@ function renderizarHabitaciones(){
                   seleccionOk=0;
             }
             if(seleccionOk===1){
-                //console.log(reservaEnCurso);
-                //window.open("../index.html");
+
                 contenedor_resultado_habitaciones.innerHTML='';
                 document.querySelector('.formulario_modal').classList.add('modal--show');           
                 arrayClientes = JSON.parse(localStorage.getItem('clientes')) || [];
@@ -132,7 +131,6 @@ function seleccionar_cantidad_habitaciones(habitacion, cantidad, precio){
             arrayHabitacionesSeleccionadas.push(objHabitacion);
         }
     }
-    //console.log(arrayHabitacionesSeleccionadas)
 }
 
 function vista_bienvenida(){

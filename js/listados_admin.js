@@ -63,19 +63,18 @@ botonAceptar.addEventListener('click',()=>{
     } 
 });
 
-//************* FUNCIONES DE LISTADOS *************/
 const formato_listados=()=>{
  cuerpoListados.innerHTML=`
                                   <header class="cabecera_listado row col-12">
                                         <div class="header_logo_listado  col-4">
                                                 <img class="img-fluid rounded" src="./assets/images/logo_hotel.jpg" id="logo_hotel_listado" alt="logo hotel">
                                         </div>
-                                        <div class="text-center col-8 d-flex justify-content-center">
+                                        <div class="container-fluid text-center col-8 d-flex justify-content-center">
                                            <div class="row d-flex justify-content-center align-items-center col-12">
-                                                <div class="col-9">
-                                                        <h2  class="titulo_listado">Listado</h2>
+                                                <div class="col-9 ">
+                                                        <h2  class="titulo_listado titulo_listado_facturacion">Listado</h2>
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-3  text-center">
                                                         <h3 class="fecha">Fecha</h3>
                                                 </div>
                                             </div>
@@ -127,12 +126,12 @@ const mostrarClientes=(clientes)=>{
         array_clientes.forEach((cliente)=>{
                 filaCliente.innerHTML+=`<div class="filaCli d-flex flex-column justify-content-center   col-12 rounded">
                                                 <div class="row d-flex justify-content-evenly align-items-center">
-                                                        <div class="col-2 text-center ">
+                                                        <div class="col-4 text-center ">
                                                                 <button class="btn btn-warning btn_eliminar_item_listado" onclick="eliminarItemListado(${cliente.dni},'clientes');" title="Eliminar Cliente">
                                                                         <img src="../assets/images/trash.svg" alt="Eliminar Cliente" width="16" />
                                                                 </button>
                                                         </div>
-                                                        <div class="col-10 text-center">
+                                                        <div class="col-8 text-center">
                                                                 <p class="p_nombreCli text-start"><B>NOMBRE</B>   ${cliente.nombre}</p>
                                                         </div>
                                                         <div class="col-4">
@@ -145,28 +144,11 @@ const mostrarClientes=(clientes)=>{
                                                                 <p><B>E-MAIL   </B> ${cliente.email}</p>
                                                         </div>
                                                 </div>        
-                                       
                                         </div>`
-        
             });
- 
-        filaCliente.style.cssText='width:100%; padding-bottom: 100px;';
+        filaCliente.classList.add('estilo_cliente');
         filaCliente.classList.add('container-fluid');    
         filaCliente.classList.add('row');
-        filaCliente.classList.add('d-flex');  
-        filaCliente.classList.add('justify-content-center');  
-        filaCliente.classList.add('align-items-center');
-        filaCliente.classList.add('p-0');
-        filaCliente.classList.add('m-0');
-
-        let fila=[];
-        fila=document.getElementsByClassName('filaCli');
-            
-        for (cadafila of fila){
-                cadafila.style.cssText=`border: 1px solid; text-align: left; width: 95%; padding: 5px;`;
-        }
-
-
 }
         
 
@@ -444,28 +426,13 @@ const mostrarFacturacion=(reservas,parametro)=>{
         
         let p_totalFac=document.querySelector('.p_totalFac');
         p_totalFac.textContent="Total Facturado $"+totalFacturado;
-        
-
-        filaReservas.style.cssText='font-size:0.7rem; width:100%; padding-bottom: 100px;';
+    
+        filaReservas.classList.add('estilos_facturacion');
         filaReservas.classList.add('container-fluid');    
         filaReservas.classList.add('row');  
-        filaReservas.classList.add('d-flex');  
-        filaReservas.classList.add('justify-content-center');  
-        filaReservas.classList.add('align-items-center');
-        filaReservas.classList.add('p-0');
-        filaReservas.classList.add('m-0');
-
-        let fila=[];
-        fila=document.getElementsByClassName('filaCli');
-            
-        for (cadafila of fila){
-                cadafila.style.cssText='text-align: left; width: 95%; padding: 5px;';
-        }
-
-        p_totalFac.style.cssText='margin:30px; font-size:14px; font-weight: bold; text-align:center; padding:6px; border-radius:6px;'
 }
-function eliminarItemListado(id,tipoListado) {//listado es el array en el que voy a borrar un item, id es el identificado del item a borrar
-    
+
+function eliminarItemListado(id,tipoListado) {//listado es el array en el que voy a borrar un item, id es el identificado del item a borrar   
     
     const radiosDOM=leerRadiosDOM();
     let listado_aux=[];
@@ -590,7 +557,7 @@ const verDetalleReserva=(nro_reserva)=>{
                                         </div>
                                         <div class="row d-flex justify-content-center align-items-center">
                                                 <div class="col-12 text-start">
-                                                        <p><B>CANTIDAD DE NOCHES DE ALOJAMIENTO   </B> ${reserva_buscada[0].estadia}</p>
+                                                        <p><B>NOCHES DE ALOJAMIENTO   </B> ${reserva_buscada[0].estadia}</p>
                                                 </div>
         
                                         </div>
@@ -632,13 +599,13 @@ const verDetalleReserva=(nro_reserva)=>{
                 
                         let auxHab=bdHabitaciones.filter((habit)=>parseInt(habit.id)===parseInt(habitacion.habitacion));
                                 
-                        contenedor_habitaciones.innerHTML+=`<div class="col-6 d-flex justify-content-start pt-2">
+                        contenedor_habitaciones.innerHTML+=`<div class="col-sm-6 col-12 d-flex justify-content-start pt-2">
                                                                 <B><span>Habitación (Id- ${habitacion.habitacion}): </span></B><span class="nombre_habitacion">${auxHab[0].nombre}</span>
                                                         </div>
-                                                        <div class="col-3 d-flex justify-content-start pt-2">
+                                                        <div class="col-sm-3 col-12 d-flex justify-content-start pt-2">
                                                                 <B><span>Cantidad: </span></B><span class="cantidad_habitacion">${habitacion.cantidad}</span>
                                                         </div>
-                                                        <div class="col-3  d-flex justify-content-start pt-2">
+                                                        <div class="col-sm-3 col-12 d-flex justify-content-start pt-2">
                                                                 <B><span>Precio por Noche: </span></B><span class="precio_habitacion">$${habitacion.precio}</span>
                                                         </div>`       
                 });

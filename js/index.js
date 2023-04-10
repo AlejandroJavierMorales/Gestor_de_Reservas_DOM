@@ -5,9 +5,6 @@ window.addEventListener("load", function(event) {
                 if(reservaNueva!==0){
 
                         //Traer datos de la última Reserva confirmada
-                        //Datos del Cleinte
-                        //let objClienteAux= new Cliente (arrayClientes[(arrayClientes.length)-1].dni,arrayClientes[(arrayClientes.length)-1].nombre,arrayClientes[(arrayClientes.length)-1].email,arrayClientes[(arrayClientes.length)-1].domicilio);
-                        //Datos de la Reserva
                         arrayReservas=JSON.parse(localStorage.getItem('reservas')) || [];
                         
                         if(arrayReservas.length>0){
@@ -74,9 +71,9 @@ window.addEventListener("load", function(event) {
 
                         arrayHabitaciones.forEach(habitacion=>{
 
-                        let auxHab=bdHabitaciones.filter((habit)=>parseInt(habit.id)===parseInt(habitacion.habitacion));
+                                let auxHab=bdHabitaciones.filter((habit)=>parseInt(habit.id)===parseInt(habitacion.habitacion));
                 
-                        detalle_reserva.innerHTML+=`     <div class="col-12">
+                                 detalle_reserva.innerHTML+=`     <div class="col-12">
                                                                                 <B><span>Habitación (Id- ${habitacion.habitacion}): </span></B><span class="nombre_habitacion">${auxHab[0].nombre}</span>
                                                                         </div>
                                                                         <div class="col-6">

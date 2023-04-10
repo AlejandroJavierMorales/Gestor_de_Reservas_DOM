@@ -67,17 +67,14 @@ btnLoginModal.addEventListener('click',(e)=>{
                                         Swal.fire({
                                                 text: "Por Favor Vuelva a Ingresar sus Credenciales para acceder al Sistema...",
                                                 icon: "success",
-
                                               });
                                 }else{
                                         Swal.fire({
                                                 title: "Usuario No Registrado",
                                                 icon: "warning",
- 
                                               });
                                 }
                               })       
-                        
                 }else{
                         //Trae los Usuarios Registrados
                         registroDeUsuarios = JSON.parse(localStorage.getItem('usuariosGR'));
@@ -124,21 +121,16 @@ btnLoginModal.addEventListener('click',(e)=>{
                                         title:"Error",
                                         title: "El Password  Ingresado es Incorrecto...",
                                         icon: "warning",
-
                                       });
                                 }
-                        
-                        }    
-                        
+                        }     
                 }       
         }else{
                 Swal.fire({
                         title:"Error",
                         title: "Usuario o Password  Ingresado es Incorrecto...",
                         icon: "warning",
-
-                      });
-                      
+                      });         
         }
 });
 //Cancela Login y cierra ventana Modal

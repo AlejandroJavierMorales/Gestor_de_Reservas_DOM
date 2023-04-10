@@ -59,8 +59,6 @@ class Cliente{
     }
 }
 
-
-//Variables del DOM
 const txtNombre=document.getElementById("nombre");
 const txtDni=document.getElementById("dni");
 const txtTelefono=document.getElementById("telefono");
@@ -72,7 +70,7 @@ const formulario_modal = document.querySelector('.modal');
 const btn_confirmar_reserva = document.querySelector('.btn_confirmar_reserva');
 const btn_cancelar_reserva = document.querySelector('.btn_cancelar_reserva');
 
-let reservaEnCurso ={//Objeto que contendra todo la info de la Reserva
+let reservaEnCurso ={
     habitacion:"",
     fechaIngreso:"",
     fechaEgreso:"",
