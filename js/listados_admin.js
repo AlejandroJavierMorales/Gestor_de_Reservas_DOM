@@ -448,7 +448,7 @@ function eliminarItemListado(id,tipoListado) {//listado es el array en el que vo
                     text: "Si elimina el Cliente, perdera el registro de las reservas asociadas...Desea Borrarlo ?",
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonText: 'Registrar',
+                    confirmButtonText: 'Borrar',
                     cancelButtonText: 'Cancelar'
                   }).then((result) => {
                     if (result.isConfirmed) {
@@ -491,7 +491,7 @@ function eliminarItemListado(id,tipoListado) {//listado es el array en el que vo
                     text: "Confirma eliminar este registro ?",
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonText: 'Registrar',
+                    confirmButtonText: 'Borrar',
                     cancelButtonText: 'Cancelar'
                   }).then((result) => {
                     if (result.isConfirmed) {
