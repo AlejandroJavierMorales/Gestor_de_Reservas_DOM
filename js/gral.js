@@ -81,102 +81,25 @@ let reservaEnCurso ={
 
 
 let arrayDeHabitaciones=[];
+let bdHabitaciones=[];
    
    
  
 function leerHabitaciones(){
+    //arrayDeHabitaciones=[];
      fetch('../habitaciones.json')
     .then((response) => response.json())
     .then((data) => {
         data.forEach(valor => {
-            arrayDeHabitaciones.push(valor)
+            arrayDeHabitaciones.push(valor);
+            
         });
+        //bdHabitaciones=arrayDeHabitaciones;
         
     });
-    return arrayDeHabitaciones;    
+    //return arrayDeHabitaciones;    
 }
 
-arrayDeHabitaciones= leerHabitaciones();
+leerHabitaciones();
 
-
-
-
-const enviarEmail=()=>{
-
-   /*  var templateParams = {
-        name: 'James',
-        notes: 'Check this out!',
-        reply_to: 'malejandro2002@yahoo.com.ar',
-        message: 'Hola esto es una prueba desde email-jS Nueva',
-        to_name: 'James'
-    };
-     
-    emailjs.send('service_b6r6z5e', 'template_x357qkg', templateParams,'kQEngu40eUN502B3w' )
-        .then(function(response) {
-           console.log('SUCCESS!', response.status, response.text);
-           console.log(response);
-           alert("enviado");
-        }, function(error) {
-           console.log('FAILED...', error);
-        }); */
-
-let data={
-            service_id: 'service_b6r6z5e',
-            template_id: 'template_x357qkg',
-            user_id: 'kQEngu40eUN502B3w',
-            template_params: {
-                to_name: 'James',
-                reply_to: 'malejandro2002@yahoo.com.ar',
-                message: 'Hola esto es una prueba desde email-jS rrrrrrrrrrr'
-            }
-}
-
-    fetch('https://api.emailjs.com/api/v1.0/email/send',{
-            type: 'POST',
-            data: JSON.stringify(data),
-            contentType: 'application/json'
-    })
-    .then(function() {
-        alert('Your mail is sent!');
-    })
-    .catch(function(error) {
-        alert('Oops... ' + JSON.stringify(error));
-    }); 
-    
-   /* ;
-    const res = respuesta.json();
-    console.log(res); */
-
-
-}
-
-document.getElementById('send_email').addEventListener('click',(e)=>{
-    e.preventDefault()   
-    enviarEmail()
-});
-
-
-
-
-            /*/ code fragment
-        var data = {
-            service_id: 'YOUR_SERVICE_ID',
-            template_id: 'YOUR_TEMPLATE_ID',
-            user_id: 'YOUR_PUBLIC_KEY',
-            template_params: {
-                'username': 'James',
-                'g-recaptcha-response': '03AHJ_ASjnLA214KSNKFJAK12sfKASfehbmfd...'
-            }
-        };
-        
-        $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
-            type: 'POST',
-            data: JSON.stringify(data),
-            contentType: 'application/json'
-        }).done(function() {
-            alert('Your mail is sent!');
-        }).fail(function(error) {
-            alert('Oops... ' + JSON.stringify(error));
-        });
-        // code fragment */
 

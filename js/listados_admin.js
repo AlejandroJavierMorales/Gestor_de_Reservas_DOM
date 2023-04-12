@@ -2,7 +2,6 @@
 /**************************************************/
 const botonAceptar = document.querySelector(".btn_aceptar_listados");
 const cuerpoListados = document.querySelector('.contenedor_resultados');
-let bdHabitaciones=leerHabitaciones();
 function leerRadiosDOM(){
           
    
@@ -293,7 +292,7 @@ const mostrarReservas=(reservas)=>{
                 let valorTotalEstadia=0;
                 arrayHabitaciones.forEach(habitacion=>{
                 
-                        let auxHab=bdHabitaciones.filter((habit)=>parseInt(habit.id)===parseInt(habitacion.habitacion));
+                        let auxHab=arrayDeHabitaciones.filter((habit)=>parseInt(habit.id)===parseInt(habitacion.habitacion));
                                 
                         contenedor_habitaciones.innerHTML+=`     <div class="col-12 d-flex justify-content-start">
                                                                 <B><span>Habitación (Id- ${habitacion.habitacion}): </span></B><span class="nombre_habitacion">${auxHab[0].nombre}</span>
@@ -538,7 +537,6 @@ const parsearFechaString = (fecha)=>{
     }
 
 const verDetalleReserva=(nro_reserva)=>{
-        //alert(nro_reserva)
         
         let detalle_express=document.querySelector(`.detalle_reserva_fac${nro_reserva}`);
         
@@ -547,7 +545,7 @@ const verDetalleReserva=(nro_reserva)=>{
         if(reservas.length>0){
                 let reserva_buscada=reservas.filter(reserva_nro=>parseInt(reserva_nro.nro)===parseInt(nro_reserva));
 
-                detalle_express.innerHTML=`<div class="row d-flex justify-content-center align-items-center">
+                detalle_express.innerHTML=`<div class="row d-flex justify-content-center align-items-center detalle_reserva_express">
                                                  <div class="col-6 text-start">
                                                         <p><B>NOMBRE DEL CLIENTE    </B>   ${reserva_buscada[0].nombre}</p>
                                                 </div>
@@ -597,7 +595,7 @@ const verDetalleReserva=(nro_reserva)=>{
                                                 </div>`
                 arrayHabitaciones.forEach(habitacion=>{
                 
-                        let auxHab=bdHabitaciones.filter((habit)=>parseInt(habit.id)===parseInt(habitacion.habitacion));
+                        let auxHab=arrayDeHabitaciones.filter((habit)=>parseInt(habit.id)===parseInt(habitacion.habitacion));
                                 
                         contenedor_habitaciones.innerHTML+=`<div class="col-sm-6 col-12 d-flex justify-content-start pt-2">
                                                                 <B><span>Habitación (Id- ${habitacion.habitacion}): </span></B><span class="nombre_habitacion">${auxHab[0].nombre}</span>

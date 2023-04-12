@@ -38,6 +38,9 @@ function resetVentanaAdministracion(){
 }
 openModalLogin.addEventListener('click', (e)=>{
     e.preventDefault();
+
+    /* arrayDeHabitaciones= leerHabitaciones() //Levanta detalle de habitaciones del JSON
+    bdHabitaciones=arrayDeHabitaciones; */
     modalLogin.classList.add('modal--show');
     resetFormularioLogin();
     

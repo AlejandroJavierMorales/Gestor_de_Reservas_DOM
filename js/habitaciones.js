@@ -3,16 +3,12 @@ const contenedor_resultado_habitaciones=document.querySelector('.busqueda__resul
 
 
 function renderizarHabitaciones(){
-    let arrayHabitaciones = leerHabitaciones() || [];
-    console.log(arrayHabitaciones);
+    
     arrayHabitacionesSeleccionadas=[];
-
-    
-    
 
     contenedor_resultado_habitaciones.innerHTML+='';
     let a=0;
-    arrayHabitaciones.forEach((habitacion)=>{
+    arrayDeHabitaciones.forEach((habitacion)=>{
         a++;
             contenedor_resultado_habitaciones.innerHTML+=`<div class="col-md-6 fila_id d-flex justify-content-evenly pt-3">
                                                              <div class="fila">  

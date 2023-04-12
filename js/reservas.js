@@ -1,3 +1,7 @@
+/* leerHabitaciones() */ //Levanta detalle de habitaciones del JSON
+//bdHabitaciones=arrayDeHabitaciones;
+
+
 //Definicion de Reserva: Periodo y Cantidad de pasajeros
 const btn_busqueda_fecha=document.querySelector('.busqueda__fecha');
 const contenedor_busqueda_fecha=document.querySelector('.busqueda__calendario__contenedor');
@@ -121,6 +125,7 @@ btn_busqueda_pasajeros.addEventListener('click',()=>{
     divs_edad_menores.innerHTML=''
     let cant_adultos=0;
     let cant_menores=0;
+    arrayMenores=[];
     
     contenedor_resultado_habitaciones.classList.add('ocultar');
 
@@ -135,7 +140,8 @@ btn_busqueda_pasajeros.addEventListener('click',()=>{
         cantidad_adultos.textContent=cant_adultos;
     });
 
-    btn_menores_mas.addEventListener('click',()=>{ 
+    btn_menores_mas.addEventListener('click',(e)=>{
+        e.preventDefault(); 
         cant_menores++
         cantidad_menores.textContent=cant_menores;
         divs_edad_menores.innerHTML=''
@@ -165,10 +171,15 @@ btn_busqueda_pasajeros.addEventListener('click',()=>{
     btn_listo.addEventListener('click',()=>{
         busqueda_pasajeros_adultos.textContent=`${cantidad_adultos.textContent} Adultos`;
         busqueda_pasajeros_menores.textContent=`${cantidad_menores.textContent} Menores`;
+        cant_menores=parseInt(cantidad_menores.textContent)
+        
         if (cant_menores>0){
+            
             for(i=0;i<cant_menores;i++){
                 let edad=document.getElementById(`menor${i+1}`);
-                arrayMenores.push(edad.value);
+                 if(edad !== null){ 
+                    arrayMenores.push(edad.value);
+                 }
             }
             let edad_Ok=0
             arrayMenores.forEach((edad)=>{
@@ -181,15 +192,17 @@ btn_busqueda_pasajeros.addEventListener('click',()=>{
                     icon: "warning",
                   })),
                   edad_Ok=0,
+                  cant_menores=0,
                   arrayMenores=[]
             ) : (
                 contenedor_busqueda_pasajeros.classList.add('ocultar'),
                 divs_edad_menores.innerHTML='',
                 cant_adultos=0,
-                cant_menores=0
+                cant_menores=0,
+
+                contenedor_resultado_habitaciones.classList.remove('ocultar'),
+                contenedor_resultado_habitaciones.innerHTML=''
             )
-            contenedor_resultado_habitaciones.classList.remove('ocultar');
-            contenedor_resultado_habitaciones.innerHTML='';
             vista_bienvenida();
             cargaDatosPasajeros(arrayMenores);
     }else{

@@ -616,6 +616,10 @@ footer{
   .titulo_listado_facturacion, .fecha{
     font-size: 0.2rem !important;
   }
+  .filaCli{
+    font-size: 0.7rem !important;
+    margin-left: 0px;
+  }
 }
 
 
@@ -772,7 +776,7 @@ footer{
     width: auto;
     padding: 3px 6px 3px 6px !important;
   }
-  .filaCli p{
+  .filaCli p, .filaCli{
     font-size: 0.7rem;
   }
   .btn_aceptar_listados, .btn_salir_listados{
