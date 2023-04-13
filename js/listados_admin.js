@@ -164,9 +164,10 @@ const informeReservas=(parametro)=>{
                         let f2=document.querySelector('.dtp_out');
 
                         let resAux=reservas.filter(reserva=>(Date.parse(parsearFechaString(reserva.fechaIngreso))>=Date.parse(f1.value)) && (Date.parse(parsearFechaString(reserva.fechaIngreso))<=(Date.parse(f2.value))) );  
-
+                        resAux.sort((a,b) => new Date(parsearFechaString(a.fechaIngreso)).getTime() - new Date(parsearFechaString(b.fechaIngreso)).getTime());
+                       
                         mostrarReservas(resAux);
-                        console.log(resAux)
+                        
                 }else if(parametro==="fechain"){
                         let f1=document.querySelector('.dtp_in');
                         let resAux=[];
@@ -188,7 +189,7 @@ const informeReservas=(parametro)=>{
                 }else if(parametro==="cliente"){
                         select=document.getElementById("select");
                         let resAux=reservas.filter(reserva=>reserva.dni==select.value);
-
+                        
                         mostrarReservas(resAux);
                 }
         } else{
@@ -332,9 +333,8 @@ const informeFacturacion=(parametro=>{
                         let f1=document.querySelector('.dtp_in');
                         let f2=document.querySelector('.dtp_out');
                         let resAux=reservas.filter(reserva=>(Date.parse(parsearFechaString(reserva.fechaIngreso))>=Date.parse(f1.value)) && (Date.parse(parsearFechaString(reserva.fechaIngreso))<=Date.parse(f2.value)) );  
-
-                        resAux.sort((a, b) => Date.parse(a.fechaIngreso) - Date.parse(b.fechaIngreso))
                         
+                        resAux.sort((a,b) => new Date(parsearFechaString(a.fechaIngreso)).getTime() - new Date(parsearFechaString(b.fechaIngreso)).getTime());
                         
                         mostrarFacturacion(resAux,"periodo");
                 }else if(parametro==="cliente"){

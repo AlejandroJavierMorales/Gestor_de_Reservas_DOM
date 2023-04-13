@@ -158,14 +158,16 @@ function cargar_select(objeto) {
                             array.push(element.dni);    
                         }
                 });
-       
+                
         addOptions("select", array);
         }
 }      
 // Funcion para agregar opciones a <select>
 function addOptions(domElement, array) {
 let select = document.getElementsByName(domElement)[0];
-       
+
+array.sort((a,b) => parseInt(a) - parseInt(b));
+
         for (value in array) {
         let option = document.createElement("option");
         option.text = array[value];

@@ -86,7 +86,7 @@ let bdHabitaciones=[];
    
  
 function leerHabitaciones(){
-    //arrayDeHabitaciones=[];
+    
      fetch('../habitaciones.json')
     .then((response) => response.json())
     .then((data) => {
@@ -94,10 +94,8 @@ function leerHabitaciones(){
             arrayDeHabitaciones.push(valor);
             
         });
-        //bdHabitaciones=arrayDeHabitaciones;
         
-    });
-    //return arrayDeHabitaciones;    
+    });  
 }
 
 leerHabitaciones();

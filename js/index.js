@@ -2,8 +2,7 @@
 window.addEventListener("load", function(event) {
         let reservaNueva=JSON.parse(this.localStorage.getItem('reserva_registrada'));
         let mensaje=[];
-        //bdHabitaciones=leerHabitaciones();    
-        console.log(arrayDeHabitaciones);
+
         setTimeout(() =>{
                 if(reservaNueva!==0){
 
@@ -203,11 +202,21 @@ tot_estadia=mensajeEmail[mensajeEmail.length-1] || [''];
                       }
             })
             .then(function(response) {
-                console.log(response);
+                Swal.fire({
+                        text: "Se ha enviado un Correo Electrónico con los Datos de su Reserva... Muchas Gracias por Elegirnos!",
+                        icon: "success",
+                        showConfirmButton: false,
+                        timer: 2000,
+                      });
             })
             .catch(function(error) {
-                //alert('Oops... ' + JSON.stringify(error));
-                console.log(error);
+                Swal.fire({
+                        text: "No se pudo procesar la erición de envío de correo electrónico..."+ JSON.stringify(error),
+                        icon: "success",
+                        showConfirmButton: false,
+                        timer: 2000,
+                      });
+                
             }); 
         
         }
